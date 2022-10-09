@@ -1,0 +1,46 @@
+---
+title: "Raster with R"
+author: "inSileco Team"
+date: 2021-04-13
+output:
+  xaringan::moon_reader:
+    css: [default, rd.css, rd-font.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: dracula
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+
+```{r setup_last, include = FALSE, purl = FALSE}
+source("_setup.R")
+```
+
+
+
+
+---
+
+class: inverse, center, middle
+
+# References
+
+![:custom_hr]()
+
+
+
+---
+# References
+
+
+
+---
+
+class: inverse, center, middle
+
+# About us
+
+![:custom_hr]()
+

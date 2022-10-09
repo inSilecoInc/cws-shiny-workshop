@@ -1,0 +1,158 @@
+---
+title: "Template R workshop"
+author: "inSileco Team"
+date: 2021-04-13
+output:
+  xaringan::moon_reader:
+    css: [default, rd.css, rd-font.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: dracula
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+
+```{r setup, include = FALSE}
+source("_setup.R")
+# knitr::clean_cache(TRUE)
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #37abc8\"></i>",
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+xaringanExtra::use_scribble()
+```
+
+
+class: title-slide, middle
+
+
+## .font200[`r rp()`eproducible]
+
+<br>
+
+.instructors[
+  .font180[`r rp()` Workshop]
+  <br><br><br>
+  .authors140[David Beauchesne, Kevin Cazelles & Steve Vissault]
+  <br><br>
+  `r format(Sys.time(), '%B %d, %Y')`
+  <br>
+  .font200[
+  [`r gh()`](https://github.com/inSilecoInc)
+  [`r db()`](link_to_data)
+  [`r rfa("file-pdf")`](link_to_pdf_version)
+  ]
+]
+
+<br>
+<img src="img/logoW.png" width="140px"></img>
+
+<!-- Modify accordingly -->
+![deploy workshop](https://github.com/inSilecoInc/workshop_raster/workflows/deploy%20workshop/badge.svg)
+
+.instructors[Content under [`r rfa("creative-commons")` `r rfa("creative-commons-by")`](https://creativecommons.org/licenses/by/4.0/) unless otherwise specified.]
+
+
+
+
+---
+
+class: inverse, center, middle
+
+# Learning objectives
+
+![:custom_hr]()
+
+## .font160[`r rfa("map")`  + `r rp()`]
+
+
+
+---
+# Learning objectives
+
+<br>
+
+### Main Goal
+
+--
+
+1. L.O. 1 
+
+1. L.O. 2
+
+
+
+---
+
+class: inverse, center, middle
+
+# `r nf()` Rationalize
+
+![:custom_hr]()
+
+## Why (`r ck()` ~ 15min)
+
+???
+
+With the 3 ? you can add useful comments.
+
+
+---
+# Shortcuts
+
+```{r, include = FALSE}
+cool <- rfa(help = TRUE)
+```
+
+.pull-left[
+```{r, echo = FALSE}
+kableExtra::kbl(cool[1:9,], row.names = FALSE)
+```
+
+]
+
+.pull-right[
+```{r, echo = FALSE}
+kableExtra::kbl(cool[10:17,], row.names = FALSE)
+```
+]
+
+
+
+
+---
+# Plot
+
+```{R plot1}
+plot(1,1)
+```
+
+
+---
+# Exercice 
+
+### Description
+
+Use countdown with `cdw`
+
+`r cdw(minutes = 15, seconds = 0)`
+
+
+
+---
+# Resources `r lk()`
+
+### Add ressources here 
+
+- [Geocomputation with R](https://geocompr.robinlovelace.net/)
+
+
+
+
+```{R, child = "_last.Rmd"}
+```

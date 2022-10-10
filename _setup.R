@@ -12,3 +12,4 @@ knitr::opts_chunk$set(
 )
 options(htmltools.dir.version = FALSE, htmltools.preserve.raw = FALSE)
 library(iseWorkshops)
+library(glue)

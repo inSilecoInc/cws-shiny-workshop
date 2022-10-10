@@ -1,0 +1,343 @@
+---
+title: "Intro Shiny"
+output:
+  xaringan::moon_reader:
+    css: [default, rd.css, rd-font.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: dracula
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+
+```{r include = FALSE}
+source("_setup.R")
+lg_shiny <- function(width) {
+  glue("<img src='https://raw.githubusercontent.com/rstudio/shiny/master/man/figures/logo.png' 
+  alt='Siny logo' width='{width}%' style='vertical-align:middle'>")
+} 
+```
+
+
+---
+
+class: inverse, center, middle
+
+# About Shiny Apps 
+
+![:custom_hr]()
+
+## .font160[`r ck()`~20 min]
+
+???
+
+We can imagine a full week on this to help you build a relatively complex shiny app.
+We have ~2hours 30min on the topics, we'll give you idea and let you build app, but there are much more to cover.
+
+---
+
+# Shiny applications
+
+- Interactive capabilities thus far limited to base maps, panning, zooming and clicking.
+
+--
+
+- Underlying code remains static with a fixed user interfaces.
+
+--
+
+- Capabilities are limited in terms of user input for controlling interactive content.
+
+--
+
+- In comes Shiny!
+
+
+---
+
+# Shiny applications
+
+## `r rp()` package
+
+[`shiny`](https://cran.r-project.org/package=shiny) .font90[12/2012 (0.2.3) &nbsp; // &nbsp; 07/2022 (1.7.2)]
+
+
+> [`shiny`](https://cran.r-project.org/package=shiny) makes it incredibly easy to build interactive web applications with R. Automatic "reactive" binding between inputs and outputs and extensive prebuilt widgets make it possible to build beautiful, responsive, and powerful applications with minimal effort.
+
+`r lg_shiny(20)`
+
+
+---
+# Shiny applications
+
+.pull-left[
+<img src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" alt="" width="75%">
+
+`r bk()` [Mastering Shiny](https://mastering-shiny.org/)
+
+]
+
+.pull-right[
+
+.font90["Shiny is a framework for creating web applications using R code. It is designed primarily with data scientists in mind, and to that end, you can create pretty complicated Shiny apps with no knowledge of HTML, CSS, or JavaScript."]
+
+* Front end : 
+  - `r rfa("html5")` HTML, 
+  - `r rfa("css3")` CSS3, 
+  - `r rfa("js")` JavaScript,
+  - `r rp()`
+* Back end : 
+  - `r rfa("js")` JavaScript,
+  - `r rp()`
+
+]
+
+
+
+---
+
+# [`shiny`](https://CRAN.R-project.org/package=shiny)
+
+
+## Pros
+
+- `r rp()` in back end! Use all `r rp()`'s capabilities (data analysis, visualization, etc.) in a Web application! Although we focus on mapping rasters, `shiny` allows for much more extensive capabilities.
+
+--
+
+- Takes no time to build a simple application.
+
+--
+
+- Applications can be run locally, deployed on R Studio's [Shiny Server](https://rstudio.com/products/shiny/shiny-server/), or to a hosting service such as [shinyapps.io](https://shinyapps.io), or your own server.
+
+--
+
+- Extensive documentation and material is available for shiny applications.
+
+--
+
+- See R Studio's [Shiny apps gallery](https://shiny.rstudio.com/gallery/) for many examples.
+
+
+---
+
+# [`shiny`](https://CRAN.R-project.org/package=shiny)
+
+## Cons
+
+- Syntax and logic of a Shiny application is a little bit different than what we are usually used to with `r rp()`.
+
+--
+
+- Harder to troubleshoot and know exactly what is going on under the hood.
+
+--
+
+- Because it is more complex, it is worthwhile to really ponder whether a shiny application is necessary for what we wish to accomplish.
+
+
+---
+# UI versus Server 
+
+- Major distinction made in frameworks designed to create web applications (e.g. [Meteor](https://www.meteor.com/))
+
+--
+
+- UI (User interface) `r ey()`: what the user will interact with.
+
+--
+
+- Server `r cg()` : the operations done under the hood.
+
+--
+
+- With Shiny you are using `r rp()` to create both: 
+
+  - `r ey()` `ui` (an object including HTML content)
+  - `r cg()` `server` (a function)
+  - `shinyApp(ui, server)`
+
+
+---
+# Reactive programming
+
+- That's the tricky part! We are not used to that as `r rp()` users.
+
+--
+
+- In what follows, will make simplifications.
+
+--
+
+- See [Mastering Shiny](https://mastering-shiny.org/reactivity-intro.html) for more details.
+
+
+---
+# Reactive programming in Shiny
+
+## Why?
+
+`r lc()` [Simple shiny app](https://shiny.rstudio.com/gallery/single-file-shiny-app.html)
+
+--
+
+### To do so, variables need to depend on each other!
+
+
+---
+# Reactive programming in Shiny
+
+```{R, non_react}
+a <- 2
+b <- 2*a
+cat("a =", a, " | ", "b =", b)
+```
+
+--
+
+Would `b` change if `a` changes?
+
+--
+
+
+```{R}
+a <- 3
+cat("a =", a, " | ", "b =", b)
+```
+
+--
+
+Nope!
+
+
+---
+# Reactive programming in Shiny
+
+```{R, react1}
+library(shiny)
+reactiveConsole(TRUE)
+a <- reactiveVal()
+a(2)
+b <- reactive({2*a()})
+cat("a =", a(), " | ", "b =", b())
+```
+
+--
+
+Would `b` change if `a` changes?
+
+--
+
+```{R}
+a(3)
+cat("a =", a(), " | ", "b =", b())
+```
+
+--
+
+Yes! Why?
+
+--
+
+Because now variables are somehow linked!
+
+
+---
+# Reactive programming in Shiny
+
+
+### 1. **reactive values****
+
+```R
+a <- reactiveVal()
+# la <- reactiveValues(c = NULL, d = NULL)
+```
+
+???
+
+could be a data frame
+
+--
+
+### 2. **reactive expressions**
+
+```R
+b <- reactive({2*a()})
+```
+
+--
+
+### 3. **observers: special reactive expressions**
+
+- An observer is like a reactive expression in that it can read reactive values and call reactive expressions, and will automatically re-execute when those dependencies change
+
+--
+
+- eager (“infectious" eagerness) and forgetful
+- value returned by an observer is ignored
+
+```R
+oberveEvent({a}, {b}) # observe()
+```
+
+--
+
+`r bk()` [Mastering Shiny Chap. 15](https://mastering-shiny.org/reactivity-objects.html)
+
+
+
+---
+# Reactive programming in Shiny
+
+
+### Reactive value `r ar()` Reactive expression `r ar()` Observer 
+
+<br>
+
+--
+
+### `r tr()` Special cases
+
+--
+
+#### `input` read-only reactive values 
+
+--
+
+#### `output` special observers.
+
+<br>
+ 
+### Input `r ar()` Reactive expression `r ar()` Output
+
+???
+
+could involve a (way) more complex tree of dependencies
+ 
+
+---
+# Let's sum up 
+
+1. Shiny allows you to create web applications with `r rp()`
+
+--
+
+2. A shiny app includes a user interface (`ui`) and a server function (`server`)
+
+--
+
+3. A shiny app uses reactive programming to generate outputs based on users inputs.
+
+--
+
+
+### inputs and outputs are presented in `ui` and the rule that link them are defined in `server`
+
+
+```{R, include = FALSE}
+reactiveConsole(FALSE)
+```
+

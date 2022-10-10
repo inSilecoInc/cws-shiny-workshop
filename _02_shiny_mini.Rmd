@@ -1,0 +1,330 @@
+---
+title: "Minimal shiny"
+output:
+  xaringan::moon_reader:
+    css: [default, rd.css, rd-font.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: dracula
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+
+```{r include = FALSE}
+source("_setup.R")
+```
+
+---
+class: inverse, center, middle
+
+# `r nf()` Minimal Shiny App
+
+![:custom_hr]()
+
+## `r ck()` ~20min
+
+
+
+---
+# Minimal Shiny App
+
+`r lc()` [Simple shiny app](https://shiny.rstudio.com/gallery/single-file-shiny-app.html)
+
+.pull-left[
+```{R, eval = FALSE}
+# Global variables can go here
+n <- 200
+
+# Define the UI
+ui <- bootstrapPage(
+  numericInput('n', 'Number of obs', n),
+  plotOutput('plot')
+)
+
+# Define the server code
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    hist(runif(input$n))
+  })
+}
+
+# Return a Shiny app object
+shinyApp(ui = ui, server = server)
+
+```
+]
+
+.pull-right[
+  
+  ![](img/simple_shiny.png)
+
+]
+
+
+---
+# Minimal Shiny App
+
+## Structure
+
+- User interface object `ui`:
+
+  - Controls layout and appearance of the app ( where to position the element to display)
+  - Front end of the app
+  - What the user sees and interacts with
+
+--
+
+- Server function `server`:
+
+  - Instructions sent to the computer/server running R to build the app
+  - Back end of the application
+
+--
+
+- A call to the shinyApp function `shinyApp(ui, server)`
+
+
+---
+# Minimal Shiny App: `ui` `r ey()`
+
+```{R, eval = FALSE}
+ui <- bootstrapPage(
+  numericInput('n', 'Number of obs', n),
+  plotOutput('plot')
+)
+```
+
+--
+
+1. `ui` is the output of a function that creates a Shiny UI page (HTML), which defines the layout and its content.
+
+--
+
+2. layout: `bootstrapPage()` (see [Application layout guide](https://shiny.rstudio.com/articles/layout-guide.html))
+
+--
+
+3. input: `numericInput()` (see [Control widget](https://shiny.rstudio.com/gallery/widget-gallery.html))
+
+--
+
+4. output: `plotOutput()` (see [Display reactive output](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/))
+
+--
+
+5. add HTML content with tags (see [Shiny HTML Tags Glossary](https://shiny.rstudio.com/articles/tag-glossary.html))
+
+
+---
+# Minimal Shiny App: `server` `r cg()`
+
+```{R, eval = FALSE}
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    hist(runif(input$n))
+  })
+}
+```
+
+--
+
+1. server is a function of `input` and `output` and optionally `session` (used latter, but not covered, see [Session object](https://shiny.rstudio.com/reference/shiny/1.6.0/session.html))
+
+2. process output: `renderPlot()` (see [Display reactive output](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/))
+
+`r tr()` all `render*()` functions render reactive **output**, they 
+capture R expressions and perform some light pre-processing to make the object suitable for the corresponding `*Output()` function in `ui`.
+
+
+---
+# Minimal Shiny App: `server` `r cg()`
+
+## [Reactive output](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/)
+
+.font90[
+| Output function (`ui`) | Render function (`server`) | Creates     |
+| :--------------------- | :------------------------- | :-----------|
+| `dataTableOutput`      | `renderDataTable()`        | DataTable   |
+| `htmlOutput`           | `renderImage()`            | raw HTML    |
+| `imageOutput`          | `renderImage()`            | image       |
+| `plotOutput`           | `renderPlot()`             | plot        |
+| `tableOutput`          | `renderTable()`            | table       |
+| `textOutput`           | `renderText()`             | text        |
+| `uiOutput`             | `renderUI()`               | raw HTML    |
+| `verbatimTextOutput`   | `renderVerbatimText()`     | text        |
+]
+
+
+
+---
+# Minimal Shiny App: run the app
+
+```{R, eval = FALSE}
+shinyApp(ui = ui, server = server)
+```
+
+`r lc()` Trigger the application. 
+
+--
+
+There are several ways to do so, see [App formats and launching apps](https://shiny.rstudio.com/articles/app-formats.html).
+
+
+---
+# Minimal Shiny App: community 
+
+- As often with `r rp()`, one of the major strength is the community: 
+
+--
+  - academics / researchers
+  - growing bigger and bigger
+  
+</br>
+
+--
+
+- List of resources: [awesome-shiny-extensions](https://github.com/nanxstats/awesome-shiny-extensions)
+
+
+---
+# Interactive Atlas with shiny App 
+
+### Goals
+
+- Let's use `cdqs.csv` see (https://github.com/inSilecoInc/wksh_raster_CWS/tree/main/data)
+- Do a map per species
+
+
+### We'll use 
+
+* Let's use a `Fluidpage` and a `sidebarLayout()` that will include a side panel and a main panel.
+* in the side panel we'll have user inputs.
+* in the main panel we'll have maps/plots.
+
+
+---
+# Interactive Atlas with shiny App: `ui` `r ey()`
+
+```{R, eval = FALSE}
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      h1("Sidebar"),
+      p("This is our sidebar where inputs will be added.")
+    ),
+    mainPanel(
+      h1("Main Panel"),
+      p("This is where outputs will be added.")
+    )
+  )
+)
+```
+
+--
+
+To check what this gives, once `ui` is loaded, run the following:
+
+```{R, eval = FALSE}
+server <- function(input, output) NULL
+shinyApp(ui = ui, server = server)
+```
+
+???
+
+comma are IMPORTANT
+
+
+---
+# Interactive Atlas with shiny App: `ui` `r ey()`
+
+```{R, eval = FALSE}
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      h1("Sidebar"),
+      selectInput(inputId = "species", label = "Select species", choices = "placeholder")
+      # input$species
+    ),
+    mainPanel(
+      h1("Main Panel"),
+      plotOutput("map", width = "100%")
+    )
+  )
+)
+```
+
+
+---
+# Interactive Atlas with shiny App: `server` `r cg()`
+
+```{R, eval = FALSE}
+library(sf)
+library(dplyr)
+server <- function(input, output) {
+  cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
+                   coords = c("CentroideX", "CentroideY"),
+                   crs = 4326)
+  print(names(cdqs))
+}
+```
+
+
+???
+
+Server ===> data will need to be on a SERVER a remote computer
+
+
+---
+# Interactive Atlas with shiny App: `server` `r cg()`
+
+```{R, eval = FALSE}
+library(sf)
+library(dplyr)
+cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
+                 coords = c("CentroideX", "CentroideY"),
+                 crs = 4326)
+sl <- st_read("data/st_laurence.geojson")
+
+server <- function(input, output, session) {
+  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
+}
+```
+
+--
+
+## Run the app
+
+
+---
+# Interactive Atlas with shiny App: `server` `r cg()`
+
+```{R, eval = FALSE}
+library(sf)
+library(dplyr)
+cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
+                 coords = c("CentroideX", "CentroideY"),
+                 crs = 4326)
+server <- function(input, output, session) {
+  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
+  output$map <- renderPlot({
+    plot(st_geometry(sl), border = "grey50") 
+    cdqs %>% 
+    filter(Espece.Species.EN == !!input$species) %>% 
+    st_geometry() %>%
+    plot(add = TRUE, pch = 19)
+  })
+}
+```
+
+--
+
+## Run the app
+
+
+---
+# 1 App 1 Folder
+
+
+### atlasv1 [`r fd()`](https://github.com/inSilecoInc/wksh_raster_CWS/raw/gh-pages/demo/atlasv1.zip)

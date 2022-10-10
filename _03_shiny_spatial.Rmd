@@ -1,0 +1,283 @@
+---
+title: "Shiny spatial"
+output:
+  xaringan::moon_reader:
+    css: [default, rd.css, rd-font.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: dracula
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+
+```{r include = FALSE}
+source("_setup.R")
+```
+
+
+---
+class: inverse, center, middle
+
+# `r nf()` Spatial Shiny Apps
+
+![:custom_hr]()
+
+## `r ck()` ~20min
+
+
+---
+# Spatial Features
+
+- Any `r rp()` packages can be used to do computation. 
+
+--
+
+- Special output for `leaflet` 
+
+--
+
+- special module in [`mapedit`](https://github.com/r-spatial/mapedit)
+
+---
+# [Reactive output](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/)
+
+.font90[
+| Output function (`ui`) | Render function (`server`) | Creates     |
+| :--------------------- | :------------------------- | :-----------|
+| `dataTableOutput`      | `renderDataTable()`        | DataTable   |
+| `htmlOutput`           | `renderImage()`            | raw HTML    |
+| `imageOutput`          | `renderImage()`            | image       |
+| `plotOutput`           | `renderPlot()`             | plot        |
+| `tableOutput`          | `renderTable()`            | table       |
+| `textOutput`           | `renderText()`             | text        |
+| `uiOutput`             | `renderUI()`               | raw HTML    |
+| `verbatimTextOutput`   | `renderVerbatimText()`     | text        |
+| `leafletOutput()`      | `renderLeaflet()`          | leaflet map |
+]
+
+---
+# Spatial Shiny App: `ui` `r ey()`
+
+### Previously
+
+```{R, eval = FALSE}
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      h1("Sidebar"),
+      selectInput(inputId = "species", label = "Select species", choices = "placeholder")
+    ),
+    mainPanel(
+      h1("Main Panel"),
+      plotOutput("map", width = "100%")
+    )
+  )
+)
+```
+
+
+---
+# Spatial Shiny App: `ui` `r ey()`
+
+### Now
+
+```{R, eval = FALSE}
+library(leaflet)
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      h1("Sidebar"),
+      selectInput(inputId = "species", label = "Select species", choices = "placeholder")
+    ),
+    mainPanel(
+      h1("Main Panel"),
+      leafletOutput("map", width = "100%", height = "90vh")
+    )
+  )
+)
+```
+
+---
+# Spatial Shiny App: `server` `r cg()`
+
+### Previously
+
+```{R, eval = FALSE}
+library(sf)
+library(dplyr)
+server <- function(input, output, session) {
+  cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
+                   coords = c("CentroideX", "CentroideY"),
+                   crs = 4326)
+  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
+  # output$map <- renderPlot(...)
+}
+```
+
+
+---
+# Spatial Shiny App: `server` `r cg()`
+
+### Now
+
+```{R, eval = FALSE}
+library(sf)
+library(dplyr)
+cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
+                 coords = c("CentroideX", "CentroideY"),
+                 crs = 4326)
+server <- function(input, output, session) {
+  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
+  output$map <- renderLeaflet(
+    {
+      tmp <- cdqs %>% 
+        filter(Espece.Species.EN == !!input$species) 
+      leaflet(tmp) %>% 
+      setView(lng = -63, lat = 48, zoom = 5) %>% 
+      addProviderTiles("CartoDB.Positron") %>%
+      addCircleMarkers(
+        stroke = FALSE,
+        popup = ~as.character(Nom.de.colonie.Colony.name))
+    }
+  )
+}
+```
+
+--
+
+```{R, eval = FALSE}
+shinyApp(ui, server)
+```
+
+
+---
+# mapEdit module:  `ui` `r ey()`
+
+```{R, eval = FALSE}
+library(mapedit)
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      h1("Sidebar"),
+      selectInput(inputId = "species", label = "Select species", choices = "placeholder")
+    ),
+    mainPanel(
+      h1("Main Panel"),
+      mapedit::editModUI("map", width = "100%", height = "90vh")
+    )
+  )
+)
+```
+
+---
+# mapEdit module: `server` `r cg()`
+
+
+```{R, eval = FALSE}
+library(sf)
+library(dplyr)
+cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
+                 coords = c("CentroideX", "CentroideY"),
+                 crs = 4326)
+
+server <- function(input, output, session) {
+  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
+  observeEvent(input$species, {
+    tmp <- cdqs %>% 
+      filter(Espece.Species.EN == !!input$species) 
+    map <- leaflet(tmp) %>% 
+      setView(lng = -63, lat = 48, zoom = 5) %>% 
+      addProviderTiles("CartoDB.Positron") %>%
+      addCircleMarkers(
+        stroke = FALSE,
+        popup = ~as.character(Nom.de.colonie.Colony.name))
+    callModule(editMod, leafmap = map, id = "map")
+  }, ignoreNULL = FALSE)
+}
+```
+
+
+
+---
+# mapEdit module:  `ui` `r ey()`
+
+```{R, eval = FALSE}
+ui <- fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      h1("Sidebar"),
+      selectInput(inputId = "species", label = "Select species", choices = "placeholder"),
+      actionButton('save', 'Save from Map', icon = icon("download"))
+    ),
+    mainPanel(
+      h1("Main Panel"),
+      mapedit::editModUI("map", width = "100%", height = "90vh")
+    )
+  )
+)
+```
+
+---
+# mapEdit module: `server` `r cg()`
+
+
+```{R, eval = FALSE}
+server <- function(input, output, session) {
+  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
+  observeEvent(input$species, {
+    tmp <- cdqs %>% 
+      filter(Espece.Species.EN == !!input$species) 
+    map <- leaflet(tmp) %>% 
+      setView(lng = -63, lat = 48, zoom = 5) %>% 
+      addProviderTiles("CartoDB.Positron") %>%
+      addCircleMarkers(
+        stroke = FALSE,
+        popup = ~as.character(Nom.de.colonie.Colony.name))
+    edits <<- callModule(editMod, leafmap = map, id = "map")
+  })
+  observeEvent(input$save, {
+    geom <- edits()$finished
+    if (!is.null(geom)) {
+       assign('new_geom', geom, envir = .GlobalEnv)
+       sf::write_sf(geom, 'new_geom.geojson', delete_layer = TRUE, delete_dsn = TRUE)
+     } # see https://github.com/r-spatial/mapedit/issues/95
+   })
+}
+```
+
+
+---
+# 1 App 1 folder 
+
+<br>
+
+### atlasv2 [`r fd()`](https://github.com/inSilecoInc/wksh_raster_CWS/raw/gh-pages/demo/atlasv2.zip)
+ 
+- version with leaflet 
+
+<br>
+
+### atlasv3 [`r fd()`](https://github.com/inSilecoInc/wksh_raster_CWS/raw/gh-pages/demo/atlasv3.zip)
+
+- version with mapedit
+
+
+---
+# Examples
+
+## Sky's the limit
+
+<br>
+
+--
+
+## Two Examples:
+
+
+### 1. [*eDrivers*](https://david-beauchesne.shinyapps.io/edriversapp/) `shiny` app
+
+--
+
+### 2. [*Spatial Reproducible Reporting*](https://github.com/inSilecoInc/shinySpatialApp) `shiny` app

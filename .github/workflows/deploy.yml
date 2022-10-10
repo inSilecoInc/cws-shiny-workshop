@@ -10,23 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     container: rocker/verse:latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@master
-      - name: Install apt-get packages
-        run: |-
-          sudo apt-get update
-          sudo apt-get install -y pandoc libudunits2-0 libudunits2-dev
-          sudo apt-get install -y rsync tree libproj-dev libgeos-dev
-          sudo apt-get install -y libgdal-dev r-cran-ncdf4 r-cran-remotes r-cran-sf
-      
-      - name: Install R packages 
-        run: |
-          Rscript -e "install.packages('remotes', repos = 'https://muug.ca/mirror/cran/')"
-          Rscript -e "remotes::install_deps()"
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: remotes
+
       - name: Build presentation
         run: |
-          icons::download_fontawesome()
-          rmarkdown::render("index.Rmd", "all")
+          Rscript -e 'rmarkdown::render("index.Rmd", "all")'
         shell: Rscript {0}
         
       - name: Build data and script 

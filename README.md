@@ -8,5 +8,19 @@
 
 ```{R}
 install.packages("remotes")
-remotes::install_github("iseWorkshops")
+remotes::install_github("inSilecoInc/iseWorkshops")
 ```
+
+
+## Outline 
+
+### Theory 
+
+1. What is shiny ?
+2. 
+
+
+###
+
+
+###

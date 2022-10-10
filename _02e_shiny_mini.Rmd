@@ -1,0 +1,44 @@
+---
+title: "Exercise shiny mini"
+---
+
+
+```{r include = FALSE}
+source("_setup.R")
+```
+
+---
+
+class: inverse, center, middle
+
+# `r nf()` Exercise
+
+![:custom_hr]()
+
+## `r ck()` ~40min
+
+
+---
+# Interactive Atlas with shiny App 
+
+## Keep adding features to your interactive Atlas! 
+
+--
+
+### Examples:
+
+- Improve the map 
+- Add filters e.g. colony name
+  1. replace species filter by a colony filter
+  2. double filter species/colony
+- Add a button save
+
+`r cdw(minutes = 40)`
+
+
+---
+# Solution: 
+
+* the folder `data/` should include : `bathy.tif`, `cdqs.csv` and `st_laurence.geojson`
+
+* for the code, see https://raw.githubusercontent.com/inSilecoInc/wksh_raster_CWS/main/scripts/_sol_shiny1.R

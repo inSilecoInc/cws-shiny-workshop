@@ -1,7 +1,7 @@
 ---
-title: "Template R workshop"
+title: "Building Shiny apps"
 author: "inSileco Team"
-date: 2021-04-13
+date: 2022-10-09
 output:
   xaringan::moon_reader:
     css: [default, rd.css, rd-font.css, "hygge"]
@@ -31,7 +31,7 @@ xaringanExtra::use_scribble()
 class: title-slide, middle
 
 
-## .font200[`r rp()`eproducible]
+## .font120[Building Shiny Apps]
 
 <br>
 
@@ -53,13 +53,12 @@ class: title-slide, middle
 <img src="img/logoW.png" width="140px"></img>
 
 <!-- Modify accordingly -->
-![deploy workshop](https://github.com/inSilecoInc/workshop_raster/workflows/deploy%20workshop/badge.svg)
+<!-- [![deploy workshop](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml) -->
 
 .instructors[Content under [`r rfa("creative-commons")` `r rfa("creative-commons-by")`](https://creativecommons.org/licenses/by/4.0/) unless otherwise specified.]
 
 
 
-
 ---
 
 class: inverse, center, middle
@@ -68,69 +67,27 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
-## .font160[`r rfa("map")`  + `r rp()`]
-
-
-
----
-# Learning objectives
-
-<br>
-
-### Main Goal
-
---
-
-1. L.O. 1 
-
-1. L.O. 2
-
 
 
 ---
 
-class: inverse, center, middle
 
-# `r nf()` Rationalize
-
-![:custom_hr]()
-
-## Why (`r ck()` ~ 15min)
-
-???
-
-With the 3 ? you can add useful comments.
-
-
----
-# Shortcuts
-
-```{r, include = FALSE}
-cool <- rfa(help = TRUE)
+```{R, child = "_01_shiny_intro.Rmd"}
 ```
 
-.pull-left[
-```{r, echo = FALSE}
-kableExtra::kbl(cool[1:9,], row.names = FALSE)
+```{R, child = "_02_shiny_mini.Rmd"}
 ```
 
-]
-
-.pull-right[
-```{r, echo = FALSE}
-kableExtra::kbl(cool[10:17,], row.names = FALSE)
+```{R, child = "_02e_shiny_mini.Rmd"}
 ```
-]
 
-
-
-
----
-# Plot
-
-```{R plot1}
-plot(1,1)
+```{R, child = "_03_shiny_spatial.Rmd"}
 ```
+
+```{R, child = "_03e_shiny_spatial.Rmd"}
+```
+
+
 
 
 ---

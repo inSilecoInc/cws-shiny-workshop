@@ -2,11 +2,17 @@ Package: placeholder
 Type: workshop
 Title: Workshop title
 Version: 0.0.0.9000
+Date: 2022-10-10
 Authors@R: c(
   person("inSileco Inc.", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com")
   )
-Description: A template for our workshop presentations.
+Description: CWS Shniy workshopd
 Imports:
-  iseWorkshops
+  iseWorkshops,
+  glue,
+  golem,
+  shiny,
+  shinyvalidate,
+  shniyjs
 Remotes:
   inSilecoInc/iseWorkshops

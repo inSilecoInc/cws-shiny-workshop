@@ -88,8 +88,6 @@ class: inverse, center, middle
 ```
 
 
-
-
 ---
 # Exercice 
 
@@ -99,14 +97,6 @@ Use countdown with `cdw`
 
 `r cdw(minutes = 15, seconds = 0)`
 
-
-
----
-# Resources `r lk()`
-
-### Add ressources here 
-
-- [Geocomputation with R](https://geocompr.robinlovelace.net/)
 
 
 

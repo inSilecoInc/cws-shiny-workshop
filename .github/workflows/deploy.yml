@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  pull_request:
+      - main
 
 jobs:
   build:
@@ -22,7 +24,7 @@ jobs:
 
       - name: Build presentation
         run: |
-          Rscript -e 'rmarkdown::render("index.Rmd", "all")'
+          rmarkdown::render("index.Rmd", "all")
         shell: Rscript {0}
         
       - name: Build data and script 

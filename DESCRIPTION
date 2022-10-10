@@ -13,6 +13,8 @@ Imports:
   golem,
   shiny,
   shinyjs,
-  shinyvalidate
+  shinyvalidate,
+  xaringan,
+  xaringanExtra
 Remotes:
   inSilecoInc/iseWorkshops

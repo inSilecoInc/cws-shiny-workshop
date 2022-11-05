@@ -1,10 +1,10 @@
 # Building Shiny Apps
-![deploy workshop](https://github.com/inSilecoInc/workshop_R_template/workflows/deploy%20workshop/badge.svg)
+[![deploy workshop](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml)
 
 
 ## Installation 
 
-`iseWorkshops` must be installed. 
+To render the slides, `iseWorkshops` must be installed. 
 
 ```{R}
 install.packages("remotes")

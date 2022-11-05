@@ -1,12 +1,12 @@
 Package: placeholder
 Type: workshop
-Title: Workshop title
+Title: CWS Shiny workshop
 Version: 0.0.0.9000
-Date: 2022-10-10
+Date: 2022-11-05
 Authors@R: c(
   person("inSileco Inc.", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com")
   )
-Description: CWS Shniy workshopd
+Description: CWS Shiny workshop
 Imports:
   iseWorkshops,
   glue,

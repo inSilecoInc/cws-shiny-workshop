@@ -1,9 +1,13 @@
+
 html: 
 	Rscript -e 'rmarkdown::render("index.Rmd", "all")'
 
 pdf: html
 	Rscript -e 'pagedown::chrome_print("index.html")'
 	
+intro:
+	Rscript -e 'rmarkdown::render("_01_shiny_intro.Rmd", "all")'
+
 Rcode: 
 	Rscript -e 'knitr::purl("index.Rmd")'
 	

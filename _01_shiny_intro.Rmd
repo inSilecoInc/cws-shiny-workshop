@@ -32,41 +32,60 @@ class: inverse, center, middle
 ## .font160[`r ck()`~20 min]
 
 ???
-
 We can imagine a full week on this to help you build a relatively complex shiny app.
 We have ~2hours 30min on the topics, we'll give you idea and let you build app, but there are much more to cover.
 
----
-
-# Shiny applications
-
-- Interactive capabilities thus far limited to base maps, panning, zooming and clicking.
-
---
-
-- Underlying code remains static with a fixed user interfaces.
-
---
-
-- Capabilities are limited in terms of user input for controlling interactive content.
-
---
-
-- In comes Shiny!
 
 
 ---
 
 # Shiny applications
 
+.pull-left[
 ## `r rp()` package
+]
+.pull-right[
+.right[`r lg_shiny(22)`]
+]
 
-[`shiny`](https://cran.r-project.org/package=shiny) .font90[12/2012 (0.2.3) &nbsp; // &nbsp; 07/2022 (1.7.2)]
+
+[`shiny`](https://cran.r-project.org/package=shiny) .font90[12/2012 (0.2.3) &nbsp; // &nbsp; 10/2022 (1.7.3)]
 
 
 > [`shiny`](https://cran.r-project.org/package=shiny) makes it incredibly easy to build interactive web applications with R. Automatic "reactive" binding between inputs and outputs and extensive prebuilt widgets make it possible to build beautiful, responsive, and powerful applications with minimal effort.
 
-`r lg_shiny(20)`
+--
+
+```R
+install.packages("shiny")
+library("shiny")
+packageVersion("shiny")
+[1] ‘1.7.3’
+```
+
+
+---
+
+# Shiny applications
+
+## `r rfa("comments")` What for?
+
+--
+
+### - interactive capabilities
+
+### - micro-meso web applications tailor to our needs
+
+
+--
+
+## `r rfa("comments")` Why not another framework?
+
+--
+
+### - because we are `r rp()` users!
+
+
 
 
 ---
@@ -103,11 +122,11 @@ We have ~2hours 30min on the topics, we'll give you idea and let you build app, 
 
 ## Pros
 
-- `r rp()` in back end! Use all `r rp()`'s capabilities (data analysis, visualization, etc.) in a Web application! Although we focus on mapping rasters, `shiny` allows for much more extensive capabilities.
+- `r rp()` in back end! Use all `r rp()`'s capabilities (data analysis, visualization, etc.) in a Web application! 
 
 --
 
-- Takes no time to build a simple application.
+- Takes no time to build a simple (yet personnalized) application.
 
 --
 
@@ -146,7 +165,7 @@ We have ~2hours 30min on the topics, we'll give you idea and let you build app, 
 
 --
 
-- UI (User interface) `r ey()`: what the user will interact with.
+- UI (User interface) `r ey()`: what userswill interact with.
 
 --
 
@@ -164,11 +183,11 @@ We have ~2hours 30min on the topics, we'll give you idea and let you build app, 
 ---
 # Reactive programming
 
-- That's the tricky part! We are not used to that as `r rp()` users.
+- That's the tricky part! We are not used to do that as `r rp()` users.
 
 --
 
-- In what follows, will make simplifications.
+- Introduces dependencies among variables.
 
 --
 
@@ -192,7 +211,7 @@ We have ~2hours 30min on the topics, we'll give you idea and let you build app, 
 
 ```{R, non_react}
 a <- 2
-b <- 2*a
+b <- 2 * a
 cat("a =", a, " | ", "b =", b)
 ```
 
@@ -221,7 +240,7 @@ library(shiny)
 reactiveConsole(TRUE)
 a <- reactiveVal()
 a(2)
-b <- reactive({2*a()})
+b <- reactive({2 * a()})
 cat("a =", a(), " | ", "b =", b())
 ```
 

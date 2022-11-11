@@ -33,7 +33,7 @@ class: inverse, center, middle
 `r lc()` [Simple shiny app](https://shiny.rstudio.com/gallery/single-file-shiny-app.html)
 
 .pull-left[
-```{R, eval = FALSE}
+```{r, eval = FALSE}
 # Global variables can go here
 n <- 200
 
@@ -89,7 +89,7 @@ shinyApp(ui = ui, server = server)
 ---
 # Minimal Shiny App: `ui` `r ey()`
 
-```{R, eval = FALSE}
+```{r, eval = FALSE}
 ui <- bootstrapPage(
   numericInput('n', 'Number of obs', n),
   plotOutput('plot')
@@ -120,7 +120,7 @@ ui <- bootstrapPage(
 ---
 # Minimal Shiny App: `server` `r cg()`
 
-```{R, eval = FALSE}
+```{r, eval = FALSE}
 server <- function(input, output) {
   output$plot <- renderPlot({
     hist(runif(input$n))
@@ -161,7 +161,7 @@ capture R expressions and perform some light pre-processing to make the object s
 ---
 # Minimal Shiny App: run the app
 
-```{R, eval = FALSE}
+```{r, eval = FALSE}
 shinyApp(ui = ui, server = server)
 ```
 
@@ -172,42 +172,186 @@ shinyApp(ui = ui, server = server)
 There are several ways to do so, see [App formats and launching apps](https://shiny.rstudio.com/articles/app-formats.html).
 
 
----
-# Minimal Shiny App: community 
-
-- As often with `r rp()`, one of the major strength is the community: 
-
---
-  - academics / researchers
-  - growing bigger and bigger
-  
-</br>
-
---
-
-- List of resources: [awesome-shiny-extensions](https://github.com/nanxstats/awesome-shiny-extensions)
 
 
 ---
-# Interactive Atlas with shiny App 
+# Minimal Shiny App: try it out
 
-### Goals
+### Prepare and launch Shiny app 
 
-- Let's use `cdqs.csv` see (https://github.com/inSilecoInc/wksh_raster_CWS/tree/main/data)
-- Do a map per species
+--
+- Create a project folder 
+- Copy paste the code in a script called `app.R`
+- Fire up R and load Shiny package 
+- Run the app! 
 
 
-### We'll use 
+---
+# Minimal Shiny App: the reactive graph
 
-* Let's use a `Fluidpage` and a `sidebarLayout()` that will include a side panel and a main panel.
-* in the side panel we'll have user inputs.
-* in the main panel we'll have maps/plots.
+Show workflow of this very simple graph
 
+---
+# Minimal Shiny App: the reactive graph
+
+Create a project in R Studio and draw by hand the reactive graph for the default application R Studio provides 
+
+
+---
+# Minimal Shiny App: debugging your code 
+
+Why this is important
+Slides on how to do it?
+
+---
+# Minimal Shiny App: debugging your code 
+
+Show how to do this with a live demo
+
+
+---
+
+
+
+
+---
+# Minimal Shiny App: And so it begins...
+
+***Data*** `r db()`
+- tabular and spatial data 
+
+***User interface*** (ui) `r ey()`
+- side panel for user inputs
+- main panel for server outputs
+- server outputs rendered in seperate tabs
+
+***Server*** `r cg()`
+- filter data based on table attributes
+- filter data based on spatial attributes
+- summary of filtered data
+
+---
+# Minimal Shiny App: And so it begins...
+
+***Data*** `r db()`
+- tabular and spatial data
+
+***User interface*** (ui) `r ey()`
+- **side panel for user inputs**
+- **main panel for server outputs**
+- server outputs rendered in seperate tabs
+
+***Server*** `r cg()`
+- filter data based on table attributes
+- filter data based on spatial attributes
+- summary of filtered data
+
+---
+# Minimal Shiny App: And so it begins...
+
+***User interface*** (ui) `r ey()`
+- **side panel for user inputs**
+- **main panel for server outputs**
+
+.pull-left[
+```{r, eval = FALSE}
+?fluidpage
+?sidebarLayout
+?sidebarPanel
+?mainPanel
+```
+
+`r nf()` Go [here](https://shiny.rstudio.com/articles/layout-guide.html) for an example of such a layout
+]
+
+---
+# Minimal Shiny App: And so it begins...
+
+***Data*** `r db()`
+- **tabular and spatial data**
+
+***User interface*** (ui) `r ey()`
+- side panel for user inputs `r ch()`
+- main panel for server outputs `r ch()`
+- server outputs rendered in seperate tabs
+
+***Server*** `r cg()`
+- filter data based on table attributes
+- filter data based on spatial attributes
+- summary of filtered data
+
+---
+# Minimal Shiny App: And so it begins...
+
+***Data*** `r db()`
+
+- Atlas of Seabirds at Sea in Eastern Canada 2006-2016 [`r db()`](https://open.canada.ca/data/en/dataset/f612e2b4-5c67-46dc-9a84-1154c649ab4e)
+- Script to download and format the data [`r fl()`](https://github.com/inSilecoInc/cws-shiny-template/blob/main/setup.R)
+
+.pull-left[
+```{r, eval = FALSE}
+library(shiny)
+source("setup.R")
+densities <- read.csv("data/densities.csv")
+```
+]
+
+.pull-right[
+```{r, echo = FALSE}
+densities <- read.csv("data/densities.csv")
+head(densities)
+```
+]
+
+---
+# Minimal Shiny App: And so it begins...
+
+***Data*** `r db()`
+- tabular and spatial data `r ch()`
+
+***User interface*** (ui) `r ey()`
+- side panel for user inputs `r ch()`
+- main panel for server outputs `r ch()`
+- server outputs rendered in seperate tabs
+
+***Server*** `r cg()`
+- **filter data based on table attributes**
+- filter data based on spatial attributes
+- summary of filtered data
+
+---
+# Minimal Shiny App: And so it begins...
+
+***User interface*** (ui) `r ey()`
+- side panel for user inputs `r ch()`
+  - attribute selection based on `Group` and `Month`
+- main panel for server outputs `r ch()`
+  - table output
+
+***Server*** `r cg()`
+- **filter data based on table attributes**
+  - filter `Group` & `Month`
+
+---
+# Minimal Shiny App: And so it begins...
+
+This is were reactive programming starts
+
+-- 
+***image of reactive graph***
+
+- selectInput1 = select_group
+- selectInput2 = select_month
+- reactive1 = densities_filter
+- tableOutput = densities_table
+- select_group -> densities_filter
+- select_month -> densities_filter
+- densities_filter -> densities_table 
 
 ---
 # Interactive Atlas with shiny App: `ui` `r ey()`
 
-```{R, eval = FALSE}
+```{r, eval = FALSE}
 ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
@@ -221,106 +365,6 @@ ui <- fluidPage(
   )
 )
 ```
-
---
-
-To check what this gives, once `ui` is loaded, run the following:
-
-```{R, eval = FALSE}
-server <- function(input, output) NULL
-shinyApp(ui = ui, server = server)
-```
-
-???
-
-comma are IMPORTANT
-
-
----
-# Interactive Atlas with shiny App: `ui` `r ey()`
-
-```{R, eval = FALSE}
-ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
-      h1("Sidebar"),
-      selectInput(inputId = "species", label = "Select species", choices = "placeholder")
-      # input$species
-    ),
-    mainPanel(
-      h1("Main Panel"),
-      plotOutput("map", width = "100%")
-    )
-  )
-)
-```
-
-
----
-# Interactive Atlas with shiny App: `server` `r cg()`
-
-```{R, eval = FALSE}
-library(sf)
-library(dplyr)
-server <- function(input, output) {
-  cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
-                   coords = c("CentroideX", "CentroideY"),
-                   crs = 4326)
-  print(names(cdqs))
-}
-```
-
-
-???
-
-Server ===> data will need to be on a SERVER a remote computer
-
-
----
-# Interactive Atlas with shiny App: `server` `r cg()`
-
-```{R, eval = FALSE}
-library(sf)
-library(dplyr)
-cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
-                 coords = c("CentroideX", "CentroideY"),
-                 crs = 4326)
-sl <- st_read("data/st_laurence.geojson")
-
-server <- function(input, output, session) {
-  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
-}
-```
-
---
-
-## Run the app
-
-
----
-# Interactive Atlas with shiny App: `server` `r cg()`
-
-```{R, eval = FALSE}
-library(sf)
-library(dplyr)
-cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
-                 coords = c("CentroideX", "CentroideY"),
-                 crs = 4326)
-server <- function(input, output, session) {
-  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
-  output$map <- renderPlot({
-    plot(st_geometry(sl), border = "grey50") 
-    cdqs %>% 
-    filter(Espece.Species.EN == !!input$species) %>% 
-    st_geometry() %>%
-    plot(add = TRUE, pch = 19)
-  })
-}
-```
-
---
-
-## Run the app
 
 
 ---

@@ -24,6 +24,8 @@ jobs:
       - name: Build presentation
         run: |
           rmarkdown::render("index.Rmd", "all")
+          rmarkdown::render("_01_shiny_intro.Rmd", "all")
+          rmarkdown::render("_04_shiny_in_prod.Rmd", "all")
         shell: Rscript {0}
         
       - name: Build data and script 

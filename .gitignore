@@ -6,6 +6,8 @@ assets/
 index_files/
 index_cache/
 script.R
+tmp
+.vscode
 
 
 # History files

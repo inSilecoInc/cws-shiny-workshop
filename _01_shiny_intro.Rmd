@@ -194,6 +194,9 @@ packageVersion("shiny")
 - See [Mastering Shiny](https://mastering-shiny.org/reactivity-intro.html) for more details.
 
 
+
+
+
 ---
 # Reactive programming in Shiny
 

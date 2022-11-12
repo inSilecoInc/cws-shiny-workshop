@@ -97,6 +97,10 @@ class: inverse, center, middle
 ```{R, child = "_03e_shiny_spatial.Rmd"}
 ```
 
+```{R, child = "_04_shiny_in_prod.Rmd"}
+```
+
+
 
 ---
 # Exercice 

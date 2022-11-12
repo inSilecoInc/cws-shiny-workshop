@@ -14,7 +14,7 @@ remotes::install_github("inSilecoInc/iseWorkshops")
 
 ## Outline (2*3h)
 
-### Theory (`01_shiny_intro` a relire; 1h30, 45-45 KC) 
+### Theory (`01_shiny_intro` TBR, 1h30, 45-45 KC) 
 
 1. What is shiny?
 2. What is reactive programming?
@@ -54,7 +54,9 @@ remotes::install_github("inSilecoInc/iseWorkshops")
 
 * **output**: 
   * minimal code for V3
-  * host sur Shiny server (explain how to selfhost)?
+
+
+### V4: Shiny in prod, an overview  
 
 
 ### create a different repo for the shiny apps

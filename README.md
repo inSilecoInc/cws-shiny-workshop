@@ -2,6 +2,12 @@
 [![deploy workshop](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml)
 
 
+## Slides 
+
+* [Introduction]()
+* [Shiny in production]()
+
+
 ## Installation 
 
 To render the slides, `iseWorkshops` must be installed. 

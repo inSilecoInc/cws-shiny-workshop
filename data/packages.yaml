@@ -1,0 +1,40 @@
+- name: shiny 
+  cran: true
+  github: rstudio/shiny
+  description: generate shiny app
+
+- name: shinycssloaders
+  cran: true
+  github: daattali/shinycssloaders
+  description: loading animations
+
+- name: shinyloadtest
+  cran: true
+  github: rstudio/shinyloadtest
+  description: performs loading tests
+
+- name: reactlog
+  cran: true
+  github: rstudio/reactlog
+  description: visualises reactive graphs
+
+- name: shinyvalidate
+  cran: true
+  github: rstudio/shinyvalidate
+  description: validate inputs
+
+- name: golem
+  cran: true
+  github: ThinkR-open/golem
+  description: developement framework
+
+- name: shinyjs
+  cran: true
+  github: daattali/shinyjs
+  description: "useful common JavaScript operations"
+
+
+- name: bslib
+  cran: true
+  github: rstudio/bslib
+  description: tools for customizing Bootstrap themes

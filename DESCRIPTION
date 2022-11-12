@@ -20,6 +20,7 @@ Imports:
   shinytest,
   shinyvalidate,
   xaringan,
-  xaringanExtra
+  xaringanExtra,
+  yaml
 Remotes:
   inSilecoInc/iseWorkshops

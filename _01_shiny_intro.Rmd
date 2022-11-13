@@ -11,7 +11,6 @@ output:
       beforeInit: "macros.js"
 ---
 
-
 ```{r include = FALSE}
 source("_setup.R")
 lg_shiny <- function(width) {
@@ -19,7 +18,6 @@ lg_shiny <- function(width) {
   alt='Siny logo' width='{width}%' style='vertical-align:middle'>")
 } 
 ```
-
 
 ---
 
@@ -35,22 +33,18 @@ class: inverse, center, middle
 We can imagine a full week on this to help you build a relatively complex shiny app.
 We have ~2hours 30min on the topics, we'll give you idea and let you build app, but there are much more to cover.
 
-
-
 ---
 
 # Shiny applications
 
 .pull-left[
-### `r rp()` package
+### An `r rp()` package
 [`shiny`](https://cran.r- project.org/package=shiny) .font90[12/2012 (0.2.3) &nbsp; // &nbsp; 10/2022 (1.7.3)]
 ]
 .pull-right[
 .right[`r lg_shiny(24)`]
 
 ]
-
-
 
 
 > [`shiny`](https://cran.r-project.org/package=shiny) makes it incredibly easy to build interactive web applications with R. Automatic "reactive" binding between inputs and outputs and extensive prebuilt widgets make it possible to build beautiful, responsive, and powerful applications with minimal effort.
@@ -173,9 +167,9 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 
 ---
-# UI versus Server 
+# UI vs Server / Backend vs Frontend
 
-- Major distinctions made in web applications (e.g. [Meteor](https://www.meteor.com/))
+- Major distinctions made in web applications
 
 --
 
@@ -483,6 +477,29 @@ You won't use observe()
 to do in console
 
 
+---
+# Exercise 
+
+`r lc()` Create a reactive chain that allows you to convert
+
+* Fahrenheit to Celsius
+  * hint: make `temp` your reactive variable that have the temperature in Fahrenheit
+
+--
+
+* feet to meters
+
+--
+
+* Fahrenheit to Celsius and vice-versa
+
+--
+
+* [How to measure things like a Canadian](https://preview.redd.it/k1brffgbngk31.png?width=681&format=png&auto=webp&s=8cc428c345b687a3f79d8e481561781f38d0630e)
+
+`r cdw(minutes = 20, seconds = 0, margin = "1em")`
+
+
 
 ---
 # `r tr()` Special cases
@@ -510,7 +527,6 @@ to do in console
 ### **`input`** `r ar()` **`reactive expression`** `r ar()` **`output`**
 
 .center[![:scale 70%](img/reactive_graphs/simpleGraph.png)]
-
 
 
 ---
@@ -576,7 +592,6 @@ Shiny is gonna take care of it for you
 * `reactiveVal`, `oberveEvent`, `isolate()`, etc.
 
 
-
 ---
 # Let's sum up 
 
@@ -603,4 +618,10 @@ reactiveConsole(FALSE)
 
 
 ---
-# Exercise
+# Exercise 
+
+### `r lc()` Create the reactive graph of this application [Iris k-means clustering](https://shiny.rstudio.com/gallery/kmeans-example.html)
+
+
+`r cdw(minutes = 15, seconds = 0, margin = "1em")`
+

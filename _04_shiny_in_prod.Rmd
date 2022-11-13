@@ -1,0 +1,123 @@
+---
+title: "Shiny in prod"
+output:
+  xaringan::moon_reader:
+    css: [default, rd.css, rd-font.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: dracula
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+
+```{r include = FALSE}
+source("_setup.R")
+```
+
+---
+class: inverse, center, middle
+
+# `r rfa("rocket")` Shiny in prod
+
+![:custom_hr]()
+
+## `r ck()` An overview (~20min)
+
+
+
+---
+# Deploying a Shiny app 
+
+## Making your application available 
+
+<br>
+
+--
+
+* Posit (formerly RStudio) solutions:
+    * `r lk()` https://posit.co/products/open-source/shinyserver/
+    * `r lc()` https://www.shinyapps.io/
+
+--
+
+* Self-hosting:
+    - `r rfa("blog")` https://emeraldreverie.org/2019/11/17/self-hosting-shiny-notes-from-edinbr/
+    - `r lk()` https://www.shinyproxy.io/#open-source
+
+
+---
+# Best practices
+
+### `r bk()` https://mastering-shiny.org/scaling-intro.html
+
+<br>
+
+--
+
+### General best practices (software engineering principles)
+
+* Good design of your code (easy to read, non-redundant, etc.)
+* version control tool (e.g. `r gt()`)
+* testing
+* etc.
+
+
+---
+# Best practices
+
+## Pay attention to your `r rp()` code
+
+### Use functions to avoid redundancy
+
+* `r bk()` [Improving performance](https://adv-r.hadley.nz/perf-improve.html)
+
+--
+
+### Profile and optimize your `r rp()` code
+
+* `Rprof()`
+* `r rfa("box")` [`microbenchmark`](https://CRAN.R-project.org/package=microbenchmark)
+* `r rfa("box")` [`profvis`](https://CRAN.R-project.org/package=profvis) ([flame graph](https://queue.acm.org/detail.cfm?id=2927301))
+* `r rfa("bookmark")` [Improving performance](https://adv-r.hadley.nz/perf-improve.html) (`r bk()` Advanced R) 
+* `r bk()` [Efficient R programming](https://csgillespie.github.io/efficientR/)
+
+
+---
+# Best practices
+
+## Turn your shiny app into an `r rp()` package 
+
+### `r ar()` Access to robust tools to develop your app (a well-defined dev workflow)
+
+### Testing 
+
+* `r rfa("box")` [`devtools`](https://CRAN.R-project.org/package=devtools)
+*  Unit tests for your functions (see `r rfa("bookmark")` https://r-pkgs.org/testing-basics.html#introducing-testthat)
+* Test reactivity with `testServer()`(see `r rfa("bookmark")` https://mastering-shiny.org/scaling-testing.html)
+* Test your application visual (using snapshot, see https://testthat.r-lib.org/articles/snapshotting.html)
+
+
+---
+# Best practices
+
+### Load tests
+
+  * Test how your application with a given load (i.e. a given number of users using your application simultaneously)
+  * `r rfa("box")` [`shinyloadtest`](https://CRAN.R-project.org/package=shinyloadtest)
+
+--
+
+### Caching 
+
+  * Save the output result of a given action and reuse it instead of redoing the computation
+  * Use `bindCache()` (see also `r rfa("box")` [`cachem`](https://CRAN.R-project.org/package=cachem))
+
+
+--
+<br> 
+
+* `r lk()` https://shiny.rstudio.com/articles/caching.html
+* `r rfa("youtube")` https://www.rstudio.com/resources/rstudioconf-2019/shiny-in-production-principles-practices-and-tools/
+

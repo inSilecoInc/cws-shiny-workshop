@@ -87,6 +87,38 @@ class: inverse, center, middle
 ---
 # Best practices
 
+### When working with complex shiny apps, your code base gets longer
+
+--
+
+### Try to create independent components
+
+--
+
+### Use [modules](https://mastering-shiny.org/scaling-modules.html) 
+
+```R
+yourModuleUI <- function(id) {
+  ns <- NS(id)
+  tagList(...)
+}
+
+yourModuleServer <- function(id, geoms, preview, u_details) {
+  moduleServer(
+    id,
+    function(input, output, session) {
+      ...
+    }
+  )
+}   
+```
+
+
+
+
+---
+# Best practices
+
 ## Turn your shiny app into an `r rp()` package 
 
 ### `r ar()` Access to robust tools to develop your app (a well-defined dev workflow)

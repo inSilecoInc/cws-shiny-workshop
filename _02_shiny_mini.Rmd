@@ -62,6 +62,9 @@ shinyApp(ui = ui, server = server)
 
 ]
 
+???
+So far we've looked at this simple app from a standpoint of reactive programming. 
+Now we will look at it from the perspective of building a shiny app
 
 ---
 # Minimal Shiny App
@@ -175,13 +178,13 @@ There are several ways to do so, see [App formats and launching apps](https://sh
 
 
 ---
-# Minimal Shiny App: try it out
+# Minimal Shiny App: create a project
 
 .pull-left[
 ***From scratch***:
 
 - Create a project folder 
-- Copy paste the code in a script called `app.R`
+- Add code in a script called `app.R`
 - Fire up R and load Shiny package 
 - Run the app! 
 
@@ -191,13 +194,13 @@ shiny::runApp("app.R")
 ]
 
 ---
-# Minimal Shiny App: try it out
+# Minimal Shiny App: create a project
 
 .pull-left[
 ***From scratch***:
 
 - Create a project folder 
-- Copy paste the code in a script called `app.R`
+- Add code in a script called `app.R`
 - Fire up R and load Shiny package 
 - Run the app! 
 
@@ -214,110 +217,202 @@ shiny::runApp("app.R")
   - New file 
   - New projet 
 - Shiny Web Application 
-- `|> Run App`
+- Lauch application
+  - `|> Run App`
+  - `Cmd/Ctrl + Shift + Enter`
 ]
 
 ---
-# Minimal Shiny App: the reactive graph
+# Minimal Shiny App: app view  
 
-Show workflow of this very simple graph
+***Options to view your application:***
 
----
-# Minimal Shiny App: the reactive graph
-
-Create a project in R Studio and draw by hand the reactive graph for the default application R Studio provides 
-
+1. Pop-out window (default)
+2. Viewer pane 
+3. External (*i.e.* your web browser)
 
 ---
-# Minimal Shiny App: debugging your code 
-
-Why this is important
-Slides on how to do it?
-
----
-# Minimal Shiny App: debugging your code 
-
-Show how to do this with a live demo
+# Minimal Shiny App: workflow 
 
 
----
+***Typical Shiny development workflow:***
 
+1. Write code.
+2. Launch the app
+3. Play with the app
+4. Close the app
+Repeat
 
+--
 
+`r nf()` you can also trigger autoreload, see [here](https://github.com/sol-eng/background-jobs/tree/master/shiny-job)
 
----
-# Minimal Shiny App: And so it begins...
+`r tr()` but be aware that this makes debugging the app much harder
 
-***Data*** `r db()`
-- tabular and spatial data 
-
-***User interface*** (ui) `r ey()`
-- side panel for user inputs
-- main panel for server outputs
-- server outputs rendered in seperate tabs
-
-***Server*** `r cg()`
-- filter data based on table attributes
-- filter data based on spatial attributes
-- summary of filtered data
 
 ---
-# Minimal Shiny App: And so it begins...
+# Minimal Shiny App: create a project 
 
-***Data*** `r db()`
-- tabular and spatial data
+### `r lc()` Create Shiny project and launch the default Shiny app provided by `r rp()` Studio
 
-***User interface*** (ui) `r ey()`
-- **side panel for user inputs**
-- **main panel for server outputs**
-- server outputs rendered in seperate tabs
-
-***Server*** `r cg()`
-- filter data based on table attributes
-- filter data based on spatial attributes
-- summary of filtered data
+`r cdw(minutes = 15, seconds = 0, margin = "1em")`
 
 ---
-# Minimal Shiny App: And so it begins...
+# Minimal Shiny App: reactive graph
 
-***User interface*** (ui) `r ey()`
-- **side panel for user inputs**
-- **main panel for server outputs**
+### [`reactlog`](https://rstudio.github.io/reactlog/) draws the reactive graph for you! 
 
-.pull-left[
+> Behind the scenes, Shiny builds a reactive graph that can quickly become intertwined and difficult to debug. reactlog provides a visual insight into that black box of Shiny reactivity.
+
+--
+
+***How to use `reactlog`***
+
+--
+- Run `reactlog::reactlog_enable()` before launching your app
+
+--
+- Type `Cmd + F3` (iOS) or `Ctrl + F3` (Windows) while app is running
+
+--
+- Alternatively, run `shiny::reactlogShow()` once you close the app
+
+
+--
+
+### `r lc()` Use `reactlog` with the default Shiny app
+
+`r cdw(minutes = 10, seconds = 0, margin = "1em")`
+
+
+---
+# Minimal Shiny App: debugging 
+
+***Troubleshooting in Shiny is not intuitive at first***
+
+***Common problems:***
+
+- Unexpected error (*easiest*)
+- No error, yet incorrect value (*medium*)
+- Values correct, but unexpected update (*hardest*)
+
+---
+# Minimal Shiny App: debugging 
+
+### Error traceback
+
 ```{r, eval = FALSE}
-?fluidpage
-?sidebarLayout
-?sidebarPanel
-?mainPanel
+f <- function(x) g(x)
+g <- function(x) h(x)
+h <- function(x) x * 2
+f("a")
+#> Error in x * 2: non-numeric argument to binary operator
 ```
 
-`r nf()` Go [here](https://shiny.rstudio.com/articles/layout-guide.html) for an example of such a layout
+--
+
+```{r, eval = FALSE}
+traceback()
+#> 3: h(x)
+#> 2: g(x)
+#> 1: f("a")
+```
+
+.font90[`r nf()` example from [Mastering Shiny book](https://mastering-shiny.org/action-workflow.html#reading-tracebacks)]
+
+---
+# Minimal Shiny App: debugging 
+
+### Error traceback in Shiny
+
+- By default, Shiny provides a traceback in the console
+
+```
+Error in *: non-numeric argument to binary operator
+  169: g [app.R#4]
+  168: f [app.R#3]
+  167: renderPlot [app.R#13]
+  165: func
+  125: drawPlot
+  111: <reactive:plotObj>
+   95: drawReactive
+   82: renderFunc
+   81: output$plot
+    1: runApp
+```
+
+.font90[`r nf()` example from [Mastering Shiny book](https://mastering-shiny.org/action-workflow.html#reading-tracebacks)]
+
+???
+show live by change `input$bins + 1` to `input$bins + "a"` in server 
+
+---
+# Minimal Shiny App: debugging 
+
+### Interactive debugger
+
+.pull-left[
+***`browser()`***
+
+.font90[  
+```{r, eval = FALSE}
+server <- function(input, output, session) {
+  selected <- reactive({
+    browser()
+    subset(sales, TERRITORY %in% input$territory)
+  })
+}
+```
+]
+
+.font90[`r tr()` Do not forget to remove once finished debugging]
+]
+
+.pull-right[
+***`r rp()` Studio breakpoint***
+
+![](https://d33wubrfki0l68.cloudfront.net/4b822ac61e876f90880b9b93313df56f4528dbcf/33702/images/action-workflow/breakpoint.png)
+
+.font90[`r tr()` Can only be run in the server function]
 ]
 
 ---
-# Minimal Shiny App: And so it begins...
+# Minimal Shiny App: debugging 
 
-***Data*** `r db()`
-- **tabular and spatial data**
+### Tracing
 
-***User interface*** (ui) `r ey()`
-- side panel for user inputs `r ch()`
-- main panel for server outputs `r ch()`
-- server outputs rendered in seperate tabs
+***Showcase Mode***
 
-***Server*** `r cg()`
-- filter data based on table attributes
-- filter data based on spatial attributes
-- summary of filtered data
+`shiny::runApp(display.mode="showcase")`
+
+<img src="https://shiny.rstudio.com/images/debugging/kmeans-showcase.gif" alt="" width="75%">
+
+---
+# Minimal Shiny App: debugging 
+
+### Tracing
+
+***"Print" debugging***: print messages in the console while app is running
+
+```{r, eval = FALSE}
+# generate bins based on input$bins from ui.R
+x    <- faithful[, 2] 
+bins <- seq(min(x), max(x), length.out = input$bins + 1)
+message(glue::glue("updating histogram with {length(bins)} bins"))
+```
 
 ---
 # Minimal Shiny App: And so it begins...
+
+***Objective***:
+
+> Build a Shiny app that will allow you to filter a data table and visualize the filtered table
+
+--
 
 ***Data*** `r db()`
 
 - Atlas of Seabirds at Sea in Eastern Canada 2006-2016 [`r db()`](https://open.canada.ca/data/en/dataset/f612e2b4-5c67-46dc-9a84-1154c649ab4e)
-- Script to download and format the data [`r fl()`](https://github.com/inSilecoInc/cws-shiny-template/blob/main/setup.R)
 
 .pull-left[
 ```{r, eval = FALSE}
@@ -335,71 +430,166 @@ head(densities)
 ]
 
 ---
-# Minimal Shiny App: And so it begins...
+# Minimal Shiny App: building the app
 
 ***Data*** `r db()`
-- tabular and spatial data `r ch()`
+- bird density
 
-***User interface*** (ui) `r ey()`
-- side panel for user inputs `r ch()`
-- main panel for server outputs `r ch()`
-- server outputs rendered in seperate tabs
+--
 
-***Server*** `r cg()`
-- **filter data based on table attributes**
-- filter data based on spatial attributes
-- summary of filtered data
+***layout*** (ui) `r ey()`
+- side panel: user inputs
+- main panel: server outputs
 
----
-# Minimal Shiny App: And so it begins...
+--
 
-***User interface*** (ui) `r ey()`
-- side panel for user inputs `r ch()`
-  - attribute selection based on `Group` and `Month`
-- main panel for server outputs `r ch()`
-  - table output
+***user inputs*** (ui) `r ey()`
+- select input: `species`
+- select input: `periods`
 
-***Server*** `r cg()`
-- **filter data based on table attributes**
-  - filter `Group` & `Month`
+--
+
+***server output*** `r cg()`
+- filter data based selected inputs
+- render filtered table
 
 ---
-# Minimal Shiny App: And so it begins...
+# Minimal Shiny App: building the app
 
-This is were reactive programming starts
+.pull-left[
+***Data*** `r db()`
+- bird density
+]
 
--- 
-***image of reactive graph***
+.pull-right[
+***What to do***
 
-- selectInput1 = select_group
-- selectInput2 = select_month
-- reactive1 = densities_filter
-- tableOutput = densities_table
-- select_group -> densities_filter
-- select_month -> densities_filter
-- densities_filter -> densities_table 
+- Download and format the data [`r fl()`](https://github.com/inSilecoInc/cws-shiny-template/blob/main/setup.R)
+- Import species density table as global variable 
+]
+
+`r cdw(minutes = 10, seconds = 0, margin = "1em")`
 
 ---
-# Interactive Atlas with shiny App: `ui` `r ey()`
+# Minimal Shiny App: building the app
+
+.pull-left[
+***Data*** `r db()`
+- bird density `r ch()`
+
+***layout*** (ui) `r ey()`
+- side panel: user inputs
+- main panel: server outputs
+]
+
+.pull-right[
+***What to do***
 
 ```{r, eval = FALSE}
-ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
-      h1("Sidebar"),
-      p("This is our sidebar where inputs will be added.")
-    ),
-    mainPanel(
-      h1("Main Panel"),
-      p("This is where outputs will be added.")
-    )
-  )
-)
+?fluidpage
+?sidebarLayout
+?sidebarPanel
+?mainPanel
 ```
+
+.font80[`r nf()` Go [here](https://shiny.rstudio.com/articles/layout-guide.html) for an example of such a layout]
+]
+
+`r cdw(minutes = 10, seconds = 0, margin = "1em")`
+
+---
+# Minimal Shiny App: building the app
+
+.pull-left[
+***Data*** `r db()`
+- bird density `r ch()`
+
+***layout*** (ui) `r ey()`
+- side panel: user inputs `r ch()`
+- main panel: server outputs `r ch()`
+
+***user inputs*** (ui) `r ey()`
+- select input: species
+- select input: periods
+
+***server output*** `r cg()`
+- filter data based selected inputs
+- render filtered table
+]
+
+.pull-right[
+***What to do***
+
+- Draw the reactive graph for the user inputs and server outputs
+]
+
+`r cdw(minutes = 5, seconds = 0, margin = "1em")`
 
 
 ---
-# 1 App 1 Folder
+# Minimal Shiny App: building the app
+
+.pull-left[
+***Data*** `r db()`
+- bird density `r ch()`
+
+***layout*** (ui) `r ey()`
+- side panel: user inputs `r ch()`
+- main panel: server outputs `r ch()`
+
+***user inputs*** (ui) `r ey()`
+- select input: species
+- select input: periods
+
+***server output*** `r cg()`
+- filter data based selected inputs
+- render filtered table
+]
+
+.pull-right[
+***What to do***
+
+- In side panel: 
+  - Add user input for species
+  - Add user input for periods
 
 
-### atlasv1 [`r fd()`](https://github.com/inSilecoInc/wksh_raster_CWS/raw/gh-pages/demo/atlasv1.zip)
+.font80[`r nf()` [here](https://shiny.rstudio.com/gallery/widget-gallery.html) for control widgets]
+]
+
+`r cdw(minutes = 10, seconds = 0, margin = "1em")`
+
+
+---
+# Minimal Shiny App: building the app
+
+.pull-left[
+***Data*** `r db()`
+- bird density `r ch()`
+
+***layout*** (ui) `r ey()`
+- side panel: user inputs `r ch()`
+- main panel: server outputs `r ch()`
+
+***user inputs*** (ui) `r ey()`
+- select input: species `r ch()`
+- select input: periods `r ch()`
+
+***server output*** `r cg()`
+- filter data based selected inputs
+- render filtered table
+]
+
+.pull-right[
+***What to do***
+
+- Create reactive expression to filter table based on user inputs
+- Add table output in main panel
+
+
+.font80[`r nf()` [here](https://shiny.rstudio.com/tutorial/written-tutorial/lesson6/) for more information on reactive expressions]
+
+.font80[`r nf()` [here](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/) for more on displaying reactive outputs]
+]
+
+`r cdw(minutes = 20, seconds = 0, margin = "1em")`

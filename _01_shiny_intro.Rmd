@@ -76,7 +76,7 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 ### - interactive capabilities
 
-### - micro-meso web applications tailor to our needs
+### - micro-meso web applications tailored to our needs
 
 
 --
@@ -221,14 +221,14 @@ we wont go over details of new feature but important to have latest (minor) vers
 --
 
 - we are familiar with :
-  - with **imperative programming**: "do this"
-  - with **functional programming**: we create and call functions
-  - with **array programming**: we apply operations on vectors
+  - **imperative programming**: "do this"
+  - **functional programming**: we create and call functions
+  - **array programming**: we apply operations on vectors
   - ... 
 
 --
 
-- but not **reactive programming** that is more **declarative**: "make sure that this is done"
+- ... but not **reactive programming** that is more **declarative**: "make sure that this is done"
 
 ---
 # Reactive programming

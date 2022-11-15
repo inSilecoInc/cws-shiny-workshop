@@ -1,7 +1,7 @@
 ---
-title: "Raster with R"
+title: "Ressources"
 author: "inSileco Team"
-date: 2021-04-13
+date: 2022-04-13
 output:
   xaringan::moon_reader:
     css: [default, rd.css, rd-font.css, "hygge"]
@@ -19,8 +19,6 @@ source("_setup.R")
 ```
 
 
-
-
 ---
 
 class: inverse, center, middle
@@ -34,8 +32,34 @@ class: inverse, center, middle
 ---
 # References
 
-- [Mastering Shiny](https://mastering-shiny.org/)
-- [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/)
+- `r rfa("globe")` [Shiny Gallery](https://shiny.rstudio.com/gallery/)
+- `r bk()` [Mastering Shiny](https://mastering-shiny.org/)
+  - must read 
+- `r bk()` [Engineering Production-Grade Shiny Apps](https://engineering-shiny.org/)
+  - develop your app with [`golem`](https://CRAN.R-project.org/package=golem)
+- `r bk()` [Outstanding User Interfaces with Shiny](https://unleash-shiny.rinterface.com/custom-templates-skeleton.html)
+  - HTML, CSS, JavaScript; DOM, web inspector 
+  - Study cases
+- `r gh()` [awesome-shiny-extensions](https://github.com/nanxstats/awesome-shiny-extensions)
+
+
+---
+# Packages
+
+```{R, echo = FALSE, results="asis"}
+pkg <- yaml::read_yaml("data/packages.yaml")
+for (i in seq_along(pkg)) {
+  x  <- pkg[[i]]
+  if (length(x$cran)) {
+    ctxt <- "[CRAN](https://CRAN.R-project.org/package={x$name})"
+  } else ctxt <- ""
+  cat(glue::glue(
+    "* __{x$name}__: {x$description}  ",
+    "[{gh()}](https://github.com/{x$github}) ", 
+    "{ctxt}\n\n"
+  ))
+}
+```
 
 
 ---

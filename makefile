@@ -11,6 +11,10 @@ intro:
 inprod:
 	Rscript -e 'rmarkdown::render("_04_shiny_in_prod.Rmd", "all")'
 
+ressources:
+	Rscript -e 'rmarkdown::render("_last.Rmd", "all")'
+
+
 Rcode: 
 	Rscript -e 'knitr::purl("index.Rmd")'
 	

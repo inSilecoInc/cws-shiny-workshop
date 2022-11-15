@@ -103,7 +103,7 @@ class: inverse, center, middle
 
 
 ---
-# Exercice 
+# Exercise 
 
 ### Description
 

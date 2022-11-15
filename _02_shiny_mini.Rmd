@@ -177,14 +177,45 @@ There are several ways to do so, see [App formats and launching apps](https://sh
 ---
 # Minimal Shiny App: try it out
 
-### Prepare and launch Shiny app 
+.pull-left[
+***From scratch***:
 
---
 - Create a project folder 
 - Copy paste the code in a script called `app.R`
 - Fire up R and load Shiny package 
 - Run the app! 
 
+```{r, eval = FALSE} 
+shiny::runApp("app.R")
+```
+]
+
+---
+# Minimal Shiny App: try it out
+
+.pull-left[
+***From scratch***:
+
+- Create a project folder 
+- Copy paste the code in a script called `app.R`
+- Fire up R and load Shiny package 
+- Run the app! 
+
+```{r, eval = FALSE} 
+shiny::runApp("app.R")
+```
+]
+
+.pull-right[
+***Using `r rp()` Studio***:
+
+- Open `r rp()` Studio 
+- Either:
+  - New file 
+  - New projet 
+- Shiny Web Application 
+- `|> Run App`
+]
 
 ---
 # Minimal Shiny App: the reactive graph

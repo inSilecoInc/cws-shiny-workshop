@@ -14,35 +14,64 @@ output:
 ```{r include = FALSE}
 source("_setup.R")
 lg_shiny <- function(width) {
-  glue("<img src='https://raw.githubusercontent.com/rstudio/shiny/master/man/figures/logo.png' 
+  glue("<img src='https://raw.githubusercontent.com/rstudio/shiny/master/man/figures/logo.png'
   alt='Siny logo' width='{width}%' style='vertical-align:middle'>")
-} 
+}
 ```
-
----
 
 class: inverse, center, middle
 
-# About Shiny Apps 
+# `r nf()` Introduction to Shiny
 
 ![:custom_hr]()
 
-## .font160[`r ck()`~15 min]
 
-???
-We can imagine a full week on this to help you build a relatively complex shiny app.
-We have ~2hours 30min on the topics, we'll give you idea and let you build app, but there are much more to cover.
+---
+# Shiny applications
+
+## `r rfa("comments")` What is Shiny?
+
+## `r rfa("comments")` What do you what to use it for?
+
+## `r rfa("comments")` Have you already built a Shiny App?
+
 
 ---
 
 # Shiny applications
 
+## What for?
+
+--
+
+### - interactive capabilities
+
+### - micro-meso web applications tailored to our needs
+
+
+--
+
+## Why not another framework?
+
+--
+
+### - because it's very powerful
+
+### - because we are `r rp()` users!
+  - you only need to know `r rp()` (at least for start)
+  - design for our community
+  - use tools (packages) you already know
+
+
+---
+# Shiny is a package
+
 .pull-left[
-### An `r rp()` package
-[`shiny`](https://cran.r- project.org/package=shiny) .font90[12/2012 (0.2.3) &nbsp; // &nbsp; 10/2022 (1.7.3)]
+### An `r rp()` package developed by [Posit](https://posit.co/)
+[`shiny`](https://cran.r-project.org/package=shiny) .font90[12/2012 (0.2.3) -- 10/2022 (1.7.3)]
 ]
 .pull-right[
-.right[`r lg_shiny(24)`]
+.left[[`r lg_shiny(24)`](https://cran.r-project.org/package=shiny)]
 
 ]
 
@@ -67,33 +96,7 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 
 ---
-
-# Shiny applications
-
-## `r rfa("comments")` What for?
-
---
-
-### - interactive capabilities
-
-### - micro-meso web applications tailored to our needs
-
-
---
-
-## `r rfa("comments")` Why not another framework?
-
---
-
-### - because it's very powerful
-
-### - because we are `r rp()` users!
-
-
-
-
----
-# Shiny applications
+# Shiny is a framework
 
 .pull-left[
 <img src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" alt="" width="80%">
@@ -118,10 +121,17 @@ we wont go over details of new feature but important to have latest (minor) vers
 ]
 
 
-
 ---
+# Shiny has its own ecosystem
 
-# [`shiny`](https://CRAN.R-project.org/package=shiny)
+### See https://shiny.rstudio.com/
+
+### See RStudio's [Shiny apps gallery](https://shiny.rstudio.com/gallery/) for many examples.
+
+### List of resources: [awesome-shiny-extensions](https://github.com/nanxstats/awesome-shiny-extensions)
+
+
+
 
 
 ## Pros
@@ -142,7 +152,7 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 --
 
-- See R Studio's [Shiny apps gallery](https://shiny.rstudio.com/gallery/) for many examples.
+
 
 ---
 # [`shiny`](https://CRAN.R-project.org/package=shiny)
@@ -158,8 +168,6 @@ we wont go over details of new feature but important to have latest (minor) vers
 </br>
 
 --
-
-- List of resources: [awesome-shiny-extensions](https://github.com/nanxstats/awesome-shiny-extensions)
 
 
 ---
@@ -260,23 +268,11 @@ we wont go over details of new feature but important to have latest (minor) vers
 > "you have 1 L of cold water, 30 mL of lemon juice and a tablespoon of map syrup, make me a lemonade"
 
 
----
-# Reactive programming
-
-
 - **reactive programming** = **event-driven programming** the event is "data changed" 
 
 --
 
 - **reactive programming** is more declarative
-
---
-
-- with [`Shiny`](https://CRAN.R-project.org/package=Shiny) we build a **reactive graph** and Shiny takes care of it for us! 
-
---
-
-- In a reactive graph, there are "variables" that depend on each other and this is what enables the interactivity!
 
 
 
@@ -459,8 +455,6 @@ d <- reactive({
 d()
 a(3)
 d()
-a2()
-d()
 ```
 
 ???
@@ -551,7 +545,6 @@ to do in console
 
 * `r lc()` [Simple shiny app](https://shiny.rstudio.com/gallery/single-file-shiny-app.html)
 
-
 --
 
 * `r ey()` UI
@@ -592,6 +585,23 @@ server <- function(input, output) {
 
 ???
 Shiny is gonna take care of it for you
+
+
+---
+# Reactive graph
+
+### Reactive graph:  **`input$n`** `r ar()` **`output$plot`**
+
+.center[![:scale 40%](img/reactive_graphs/simpleGraph0.png)]
+
+--
+
+### with [`Shiny`](https://CRAN.R-project.org/package=Shiny) we build a **reactive graph** and Shiny takes care of it for us! 
+
+--
+
+### In a reactive graph, there are "variables" that depend on each other and this is what enables the interactivity!
+
 
 
 ---

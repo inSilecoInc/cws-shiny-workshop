@@ -71,15 +71,15 @@ Now we will look at it from the perspective of building a shiny app
 
 ## Structure
 
-- User interface object `ui`:
+- `r ey()` User interface object `ui`:
 
-  - Controls layout and appearance of the app ( where to position the element to display)
+  - Controls layout and appearance of the app (where to position the element to display)
   - Front end of the app
   - What the user sees and interacts with
 
 --
 
-- Server function `server`:
+- `r cg()` Server function `server`:
 
   - Instructions sent to the computer/server running R to build the app
   - Back end of the application
@@ -215,9 +215,9 @@ shiny::runApp("app.R")
 - Open `r rp()` Studio 
 - Either:
   - New file 
-  - New projet 
+  - New project 
 - Shiny Web Application 
-- Lauch application
+- Launch application
   - `|> Run App`
   - `Cmd/Ctrl + Shift + Enter`
 ]
@@ -272,7 +272,7 @@ Repeat
 - Run `reactlog::reactlog_enable()` before launching your app
 
 --
-- Type `Cmd + F3` (iOS) or `Ctrl + F3` (Windows) while app is running
+- Type `Cmd + F3` (`r rfa("apple")`) or `Ctrl + F3` (`r rfa("windows")` `r rfa("linux")`) while app is running
 
 --
 - Alternatively, run `shiny::reactlogShow()` once you close the app
@@ -396,7 +396,7 @@ server <- function(input, output, session) {
 
 ```{r, eval = FALSE}
 # generate bins based on input$bins from ui.R
-x    <- faithful[, 2] 
+x    <- faithful[, 2]
 bins <- seq(min(x), max(x), length.out = input$bins + 1)
 message(glue::glue("updating histogram with {length(bins)} bins"))
 ```
@@ -423,7 +423,7 @@ densities <- read.csv("data/densities.csv")
 ]
 
 .pull-right[
-```{r, echo = FALSE}
+```{r, eval = FALSE}
 densities <- read.csv("data/densities.csv")
 head(densities)
 ```

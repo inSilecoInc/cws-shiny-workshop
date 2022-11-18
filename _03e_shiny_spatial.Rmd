@@ -1,0 +1,45 @@
+---
+title: "Exercise leaflet final"
+---
+
+
+```{r include = FALSE}
+source("_setup.R")
+```
+
+---
+
+class: inverse, center, middle
+
+# `r nf()` Exercise
+
+![:custom_hr]()
+
+## `r ck()` ~1h20min
+
+
+
+---
+# Interactive Atlas with shiny App 
+
+## Keep adding features to your interactive Atlas! 
+
+--
+
+### Use `leaflet`
+
+--
+
+### Example
+
+1. add a raster layer on the map 
+2. draw a polygon around the colony (interactively) (or compute a convex hull (programmatically))
+3. Extract values
+4. Display a histogram of values extracted (plus the mean)
+
+---
+# Solution 
+
+* the folder `data/` should include : `bathy.tif`, `cdqs.csv` and `st_laurence.geojson`
+
+* for the code, see https://raw.githubusercontent.com/inSilecoInc/wksh_raster_CWS/main/scripts/_sol_shiny3.R

@@ -1,0 +1,136 @@
+---
+title: "Building Shiny apps"
+author: "inSileco Team"
+date: 2022-10-09
+output:
+  xaringan::moon_reader:
+    css: [default, rd.css, rd-font.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: dracula
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+
+```{r setup, include = FALSE}
+source("_setup.R")
+# knitr::clean_cache(TRUE)
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #37abc8\"></i>",
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
+xaringanExtra::use_scribble()
+```
+
+
+class: title-slide, middle
+
+
+## .font120[Building Shiny Apps]
+
+<br>
+
+.instructors[
+  .font180[`r rp()` Workshop]
+  <br><br><br>
+  .authors140[David Beauchesne, Kevin Cazelles & Steve Vissault]
+  <br><br>
+  `r format(Sys.time(), '%B %d, %Y')`
+  <br>
+  .font200[
+  [`r gh()`](https://github.com/inSilecoInc)
+  [`r db()`](link_to_data)
+  [`r rfa("file-pdf")`](link_to_pdf_version)
+  ]
+]
+
+<br>
+<img src="img/logoW.png" width="140px"></img>
+
+<!-- Modify accordingly -->
+<!-- [![deploy workshop](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml) -->
+
+.instructors[Content under [`r rfa("creative-commons")` `r rfa("creative-commons-by")`](https://creativecommons.org/licenses/by/4.0/) unless otherwise specified.]
+
+
+
+---
+
+class: inverse, center, middle
+
+# Learning objectives
+
+![:custom_hr]()
+
+
+
+---
+# Learning objectives
+
+--
+
+### 1. What is reactive programming?
+
+--
+
+### 2. How is a Shiny app structured?
+
+--
+
+### 3. What are the workflows in a Shiny app?
+
+--
+
+### 4. How to debug a Shiny app?
+
+---
+# Technical objectives
+
+### Build a Shiny app that: 
+
+--
+- uses tabular and spatial data 
+
+--
+- allows a user to filter the data based on
+  - table attributes
+  - spatial attributes
+
+--
+- provides a summary of the filtered data
+
+
+```{R, child = "_01_shiny_intro.Rmd"}
+```
+
+```{R, child = "_02_shiny_mini.Rmd"}
+```
+
+```{R, child = "_03_shiny_spatial.Rmd"}
+```
+
+```{R, child = "_04_shiny_in_prod.Rmd"}
+```
+
+
+
+---
+# Exercise 
+
+### Description
+
+Use countdown with `cdw`
+
+`r cdw(minutes = 15, seconds = 0)`
+
+
+
+
+
+```{R, child = "_last.Rmd"}
+```

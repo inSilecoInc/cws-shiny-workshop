@@ -1,0 +1,654 @@
+---
+title: "Intro Shiny"
+output:
+  xaringan::moon_reader:
+    css: [default, rd.css, rd-font.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: dracula
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+```{r include = FALSE}
+source("_setup.R")
+lg_shiny <- function(width) {
+  glue("<img src='https://raw.githubusercontent.com/rstudio/shiny/master/man/figures/logo.png'
+  alt='Siny logo' width='{width}%' style='vertical-align:middle'>")
+}
+```
+
+class: inverse, center, middle
+
+# `r nf()` Introduction to Shiny
+
+![:custom_hr]()
+
+
+---
+# Shiny applications
+
+## `r rfa("comments")` What is Shiny?
+
+## `r rfa("comments")` What do you what to use it for?
+
+## `r rfa("comments")` Have you already built a Shiny App?
+
+
+---
+
+# Shiny applications
+
+## What for?
+
+--
+
+### - interactive capabilities
+
+### - micro-meso web applications tailored to our needs
+
+
+--
+
+## Why not another framework?
+
+--
+
+### - because it's very powerful
+
+### - because we are `r rp()` users!
+  - you only need to know `r rp()` (at least for start)
+  - design for our community
+  - use tools (packages) you already know
+
+
+---
+# Shiny is a package
+
+.pull-left[
+### An `r rp()` package developed by [Posit](https://posit.co/)
+[`shiny`](https://cran.r-project.org/package=shiny) .font90[12/2012 (0.2.3) -- 10/2022 (1.7.3)]
+]
+.pull-right[
+.left[[`r lg_shiny(24)`](https://cran.r-project.org/package=shiny)]
+
+]
+
+
+> [`shiny`](https://cran.r-project.org/package=shiny) makes it incredibly easy to build interactive web applications with R. Automatic "reactive" binding between inputs and outputs and extensive prebuilt widgets make it possible to build beautiful, responsive, and powerful applications with minimal effort.
+
+--
+
+```R
+install.packages("shiny")
+library("shiny")
+packageVersion("shiny")
+[1] ‘1.7.3’
+```
+
+* https://github.com/rstudio/shiny/blob/main/NEWS.md
+
+
+???
+I's an R package 
+we wont go over details of new feature but important to have latest (minor) version
+
+
+---
+# Shiny is a framework
+
+.pull-left[
+<img src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" alt="" width="80%">
+
+`r bk()` [Mastering Shiny](https://mastering-shiny.org/)
+
+]
+
+--
+
+.pull-right[
+
+> .font90[Shiny is a framework for creating web applications using R code. It is designed primarily with data scientists in mind, and to that end, you can create pretty complicated Shiny apps with no knowledge of HTML, CSS, or JavaScript.]
+
+* Frontend : 
+  - `r rfa("html5")` HTML, `r rfa("css3")` CSS3, `r rfa("js")` JavaScript 
+  - via `r rp()` (partially or entirely)
+* Backend : 
+  - `r rp()`
+  - other languages via `r rp()`
+
+]
+
+
+---
+# Shiny has its own ecosystem
+
+### See https://shiny.rstudio.com/
+
+### See RStudio's [Shiny apps gallery](https://shiny.rstudio.com/gallery/) for many examples.
+
+### List of resources: [awesome-shiny-extensions](https://github.com/nanxstats/awesome-shiny-extensions)
+
+
+
+
+
+## Pros
+
+- `r rp()` in back end! Use all `r rp()`'s capabilities (data analysis, visualization, etc.) in a Web application! 
+
+--
+
+- Takes no time to build a simple (yet personalized) application.
+
+--
+
+- Applications can be run locally, deployed on R Studio's [Shiny Server](https://rstudio.com/products/shiny/shiny-server/), or to a hosting service such as [shinyapps.io](https://shinyapps.io), or your own server.
+
+--
+
+- Extensive documentation and material is available for shiny applications.
+
+--
+
+
+
+---
+# [`shiny`](https://CRAN.R-project.org/package=shiny)
+
+## Pros
+
+- As often with `r rp()`, one of the major strength is the community: 
+
+--
+  - academics / researchers
+  - growing bigger and bigger
+  
+</br>
+
+--
+
+
+---
+
+# [`shiny`](https://CRAN.R-project.org/package=shiny)
+
+## Cons
+
+- Syntax and logic of a Shiny application is a little bit different than what we are usually used to with `r rp()`.
+
+--
+
+- Takes some time to learn / more complex mental model
+
+--
+
+- Harder to troubleshoot (at least when we start).
+
+--
+
+- Because it is more complex (another layer), it is worthwhile to really ponder whether a shiny application is necessary for what we wish to accomplish.
+
+
+---
+# UI vs Server / Backend vs Frontend
+
+- Major distinctions made in web applications
+
+--
+
+- UI (User interface) `r ey()`: what users will interact with (operation are done inside your web browser, so on your computer)
+
+--
+
+- Server `r cg()` : the operations done under the hood on a remote computer (a server).
+
+
+--
+
+- With Shiny you are using `r rp()` to create both: 
+
+  - `r ey()` `ui`: an **object** (a tag list, includes HTML content)
+  - `r cg()` `server`: a **function**
+  - `shinyApp(ui, server)`
+
+
+---
+# Reactive programming
+
+## Why?
+
+`r lc()` [Simple shiny app](https://shiny.rstudio.com/gallery/single-file-shiny-app.html)
+
+--
+
+* When I change `Number of obs` to `n` then :
+  - `n` values are drawn,
+  - a new histogram is generated and displayed
+--
+
+* **reactivity**!
+    - **reactive programming** = **event-driven programming** the event is "data changed" (think "spreadsheet")
+    - see [this answer on `r rfa("stack-overflow")`](https://stackoverflow.com/questions/34495117/how-is-reactive-programming-different-than-event-driven-programming), 
+
+--
+
+* BTW, If you use the inspector you'll see HTML, CSS and JavaScript, not the `r rp()` code!
+
+
+
+---
+# Reactive programming
+
+- That's the tricky part! As `r rp()` users we do not use **reactive programming**
+
+--
+
+- we are familiar with :
+  - **imperative programming**: "do this"
+  - **functional programming**: we create and call functions
+  - **array programming**: we apply operations on vectors
+  - ... 
+
+--
+
+- ... but not **reactive programming** that is more **declarative**: "make sure that this is done"
+
+---
+# Reactive programming
+
+
+- **imperative programming**: 
+> "poor 1 L of cold water, stir in 30 mL of lemon juice and add a tablespoon of map syrup"
+
+--
+
+- **declarative programming**:
+> "you have 1 L of cold water, 30 mL of lemon juice and a tablespoon of map syrup, make me a lemonade"
+
+
+- **reactive programming** = **event-driven programming** the event is "data changed" 
+
+--
+
+- **reactive programming** is more declarative
+
+
+
+---
+# Reactive programming
+
+```{R, non_react}
+a <- 2
+b <- 2 * a
+cat("a =", a, " | ", "b =", b)
+```
+
+--
+
+Would `b` change if `a` changes?
+
+--
+
+
+```{R}
+a <- 3
+cat("a =", a, " | ", "b =", b)
+```
+
+--
+
+Nope!
+
+
+---
+# Reactive programming
+
+```{R, react1}
+# shiny must be installed
+library(shiny)
+reactiveConsole(TRUE)
+```
+
+--
+
+```{R, react2}
+a <- reactiveVal()
+a(2)
+b <- reactive({2 * a()})
+cat("a =", a(), " | ", "b =", b())
+```
+
+--
+
+Would `b` change if `a` changes?
+
+--
+
+```{R}
+a(3)
+cat("a =", a(), " | ", "b =", b())
+```
+
+--
+
+Yes! Because now variables are somehow linked!
+
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+
+.pull-left[
+  ## 1. reactive values
+]
+.pull-right[
+  ![:scale 26%](img/reactive_graphs/reactVal.png)
+]
+
+--
+
+* origins of the graph
+* could be any `r rp()` object 
+* two ways to initiate them: `reactiveVal()` and `reactiveValues()`
+
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+.pull-left[
+  ## 1. reactive values
+]
+.pull-right[
+  ![:scale 26%](img/reactive_graphs/reactVal.png)
+]
+
+```{R reactVal1}
+a <- reactiveVal(2)
+a()
+x <- reactiveVal(list(a = 1, mydf = data.frame(a = c(1, 2), b = letters[1:2])))
+x()
+```
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+.pull-left[
+  ## 1. reactive values
+]
+.pull-right[
+  ![:scale 26%](img/reactive_graphs/reactVal.png)
+]
+
+
+```{R reactVal2}
+a <- reactiveValues(a = 1, mydf = data.frame(a = c(1, 2), b = letters[1:2]))
+a
+a$a
+a$mydf
+```
+
+???
+no parentheses
+
+
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+.pull-left[
+  ## 2. reactive expressions
+]
+.pull-right[
+  ![:scale 30%](img/reactive_graphs/reactExp.png)
+]
+
+* depends on an input (reactive values or another reactive expression)
+* can be used in another reactive expression
+* special functions (lazy and cached) 
+* intermediate nodes 
+* can be used to avoid duplication in your reactive code
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+.pull-left[
+  ## 2. reactive expressions
+]
+.pull-right[
+  ![:scale 30%](img/reactive_graphs/reactExp.png)
+]
+
+```{R reactExp2}
+a <- reactiveVal(2)
+a()
+b <- reactive({2*a()})
+b()
+```
+--
+
+```{R reactExp3}
+a(4)
+b()
+```
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+.pull-left[
+  ## 2. reactive expressions
+]
+.pull-right[
+  ![:scale 30%](img/reactive_graphs/reactExp.png)
+]
+
+```{R reactExp4}
+a <- reactiveVal(2)
+b <- reactive({2*a()})
+a2 <- reactiveVal(runif(1))
+# I avoid using `c` as name variable purposely
+d <- reactive({
+  print("executing reactive")
+  b() + a2()
+}) 
+d()
+a(3)
+d()
+```
+
+???
+I have to call `d()`
+missing something that would watch change in a or a2!
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+.pull-left[
+  ## 3. Observers
+]
+.pull-right[
+  ![:scale 25%](img/reactive_graphs/reactObs.png)
+]
+
+* can read reactive values and call reactive expressions
+* will automatically re-execute when those dependencies change
+* eager (“infectious" eagerness) and forgetful
+* the value returned by an observer is ignored
+
+```{R reactExp5}
+observe(d())
+a(1)
+a(2)
+a2(1)
+```
+
+???
+You won't use observe()
+to do in console
+
+
+---
+# Exercise 
+
+`r lc()` Create a reactive chain that allows you to convert
+
+* Fahrenheit to Celsius
+  * hint: make `temp` your reactive variable that have the temperature in Fahrenheit
+
+--
+
+* feet to meters
+
+--
+
+* Fahrenheit to Celsius and vice-versa
+
+--
+
+* [How to measure things like a Canadian](https://preview.redd.it/k1brffgbngk31.png?width=681&format=png&auto=webp&s=8cc428c345b687a3f79d8e481561781f38d0630e)
+
+`r cdw(minutes = 20, seconds = 0, margin = "1em")`
+
+
+
+---
+# `r tr()` Special cases
+
+### Special cases used all the time to let Shiny do its magic!
+
+--
+
+#### - **`input`**: read-only reactive values
+
+--
+
+#### - **`output`**: special observers
+
+--
+
+<br>
+
+### **`input`** `r ar()` **`output`**
+
+.center[![:scale 40%](img/reactive_graphs/simpleGraph0.png)]
+
+--
+ 
+### **`input`** `r ar()` **`reactive expression`** `r ar()` **`output`**
+
+.center[![:scale 70%](img/reactive_graphs/simpleGraph.png)]
+
+
+---
+# Study case 
+
+* `r lc()` [Simple shiny app](https://shiny.rstudio.com/gallery/single-file-shiny-app.html)
+
+--
+
+* `r ey()` UI
+
+```R
+# Define the UI
+ui <- bootstrapPage(
+  numericInput('n', 'Number of obs', n),
+  plotOutput('plot')
+)
+```
+
+---
+# Study case 
+
+* `r cg()` Server
+
+```R
+# Define the server code
+server <- function(input, output) {
+  output$plot <- renderPlot({
+    hist(runif(input$n))
+  })
+}
+```
+
+--
+
+* `input$n`: reactive value `n`
+* `ouput$plot`: observer `plot`
+
+--
+
+### Reactive graph:  **`input$n`** `r ar()` **`output$plot`**
+
+.center[![:scale 40%](img/reactive_graphs/simpleGraph0.png)]
+
+
+???
+Shiny is gonna take care of it for you
+
+
+---
+# Reactive graph
+
+### Reactive graph:  **`input$n`** `r ar()` **`output$plot`**
+
+.center[![:scale 40%](img/reactive_graphs/simpleGraph0.png)]
+
+--
+
+### with [`Shiny`](https://CRAN.R-project.org/package=Shiny) we build a **reactive graph** and Shiny takes care of it for us! 
+
+--
+
+### In a reactive graph, there are "variables" that depend on each other and this is what enables the interactivity!
+
+
+
+---
+# Building a shiny app 
+
+### Building a more complex graph! 
+
+.center[![:scale 75%](img/reactive_graphs/complexGraph.png)]
+
+
+--
+
+### `r tr()` sometimes you will need to have more control and escape the graph
+
+* `reactiveVal`, `oberveEvent`, `isolate()`, etc.
+
+
+---
+# Let's sum up 
+
+1. Shiny allows you to create web applications with `r rp()`
+
+--
+
+2. A shiny app includes a user interface (`ui`) and a server function (`server`)
+
+--
+
+3. A shiny app uses reactive programming to generate outputs based on users inputs
+
+--
+
+4. Shiny takes care of the reactive graph you built: inputs and outputs are presented in `ui`, the rules that link them are defined in `server`
+
+
+```{R, include = FALSE}
+reactiveConsole(FALSE)
+```
+
+- See [Mastering Shiny](https://mastering-shiny.org/reactivity-intro.html) for more details.
+
+
+---
+# Exercise 
+
+### `r lc()` Create the reactive graph of this application [Iris k-means clustering](https://shiny.rstudio.com/gallery/kmeans-example.html)
+
+
+`r cdw(minutes = 15, seconds = 0, margin = "1em")`
+

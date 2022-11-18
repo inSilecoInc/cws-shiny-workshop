@@ -21,19 +21,25 @@ jobs:
         with:
           extra-packages: remotes
 
-      - name: Build presentation
+      - name: Build presentation parts
         run: |
           rmarkdown::render("index.Rmd", "all")
           rmarkdown::render("_01_shiny_intro.Rmd", "all")
+          rmarkdown::render("_02_shiny_mini.Rmd", "all")
           rmarkdown::render("_04_shiny_in_prod.Rmd", "all")
+        shell: Rscript {0}
+
+      - name: Build the entire presentation
+        run: |
+            rmarkdown::render("cws_shiny_workshop.Rmd", "all")
         shell: Rscript {0}
         
       - name: Build data and script 
         run: |
-          knitr::purl("index.Rmd", "script.R")
+          knitr::purl("cws_shiny_workshop.Rmd", "script.R")
           zip("data_and_script.zip", c("data", "script.R"))
         shell: Rscript {0}
-                
+
       # - name: Deploy workshop 
       #   uses: peaceiris/actions-gh-pages@v3
       #   with:

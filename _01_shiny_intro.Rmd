@@ -14,27 +14,19 @@ output:
 ```{r include = FALSE}
 source("_setup.R")
 lg_shiny <- function(width) {
-  glue("<img src='https://raw.githubusercontent.com/rstudio/shiny/master/man/figures/logo.png' 
+  glue("<img src='https://raw.githubusercontent.com/rstudio/shiny/master/man/figures/logo.png'
   alt='Siny logo' width='{width}%' style='vertical-align:middle'>")
-} 
+}
 ```
-
----
 
 class: inverse, center, middle
 
-# About Shiny Apps 
+# `r nf()` Introduction to Shiny
 
 ![:custom_hr]()
 
-## .font160[`r ck()`~15 min]
-
-???
-We can imagine a full week on this to help you build a relatively complex shiny app.
-We have ~2hours 30min on the topics, we'll give you idea and let you build app, but there are much more to cover.
 
 ---
-
 # Shiny applications
 
 .pull-left[
@@ -260,23 +252,11 @@ we wont go over details of new feature but important to have latest (minor) vers
 > "you have 1 L of cold water, 30 mL of lemon juice and a tablespoon of map syrup, make me a lemonade"
 
 
----
-# Reactive programming
-
-
 - **reactive programming** = **event-driven programming** the event is "data changed" 
 
 --
 
 - **reactive programming** is more declarative
-
---
-
-- with [`Shiny`](https://CRAN.R-project.org/package=Shiny) we build a **reactive graph** and Shiny takes care of it for us! 
-
---
-
-- In a reactive graph, there are "variables" that depend on each other and this is what enables the interactivity!
 
 
 
@@ -459,8 +439,6 @@ d <- reactive({
 d()
 a(3)
 d()
-a2()
-d()
 ```
 
 ???
@@ -551,7 +529,6 @@ to do in console
 
 * `r lc()` [Simple shiny app](https://shiny.rstudio.com/gallery/single-file-shiny-app.html)
 
-
 --
 
 * `r ey()` UI
@@ -592,6 +569,23 @@ server <- function(input, output) {
 
 ???
 Shiny is gonna take care of it for you
+
+
+---
+# Reactive graph
+
+### Reactive graph:  **`input$n`** `r ar()` **`output$plot`**
+
+.center[![:scale 40%](img/reactive_graphs/simpleGraph0.png)]
+
+--
+
+### with [`Shiny`](https://CRAN.R-project.org/package=Shiny) we build a **reactive graph** and Shiny takes care of it for us! 
+
+--
+
+### In a reactive graph, there are "variables" that depend on each other and this is what enables the interactivity!
+
 
 
 ---

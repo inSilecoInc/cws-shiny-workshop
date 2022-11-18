@@ -16,7 +16,6 @@ output:
 source("_setup.R")
 ```
 
----
 class: inverse, center, middle
 
 # `r nf()` Minimal Shiny App

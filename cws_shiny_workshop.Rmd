@@ -105,47 +105,17 @@ class: inverse, center, middle
 - provides a summary of the filtered data
 
 
+```{R, child = "_01_shiny_intro.Rmd"}
+```
 
----
-class: inverse, center, middle
-
-# Introduction to Shiny
-
-![:custom_hr]()
-
-`r lk()` [Introduction to Shiny](_01_shiny_intro.html)
-
-
----
-class: inverse, center, middle
-
-# Learning objectives
-
-![:custom_hr]()
-
-`r lk()` [Minimal shiny](_02_shiny_mini.html)
-
-
----
-class: inverse, center, middle
-
-# Shiny spatial
-
-![:custom_hr]()
-
-`r lk()` [Shiny spatial](_03_shiny_spatial.Rmd)
+```{R, child = "_02_shiny_mini.Rmd"}
+```
 
 ```{R, child = "_03_shiny_spatial.Rmd"}
 ```
 
----
-class: inverse, center, middle
-
-# Shiny in prod
-
-![:custom_hr]()
-
-`r lk()` [Shiny in prod](_04_shiny_in_prod.Rmd)
+```{R, child = "_04_shiny_in_prod.Rmd"}
+```
 
 
 

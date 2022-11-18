@@ -13,6 +13,13 @@ output:
 
 ```{r include = FALSE}
 source("_setup.R")
+htmltools::tagList(
+  xaringanExtra::use_clipboard(
+    button_text = "<i class=\"fa fa-clipboard\"></i>",
+    success_text = "<i class=\"fa fa-check\" style=\"color: #37abc8\"></i>",
+  ),
+  rmarkdown::html_dependency_font_awesome()
+)
 lg_shiny <- function(width) {
   glue("<img src='https://raw.githubusercontent.com/rstudio/shiny/master/man/figures/logo.png'
   alt='Siny logo' width='{width}%' style='vertical-align:middle'>")

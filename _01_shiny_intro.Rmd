@@ -144,6 +144,23 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 - See R Studio's [Shiny apps gallery](https://shiny.rstudio.com/gallery/) for many examples.
 
+---
+# [`shiny`](https://CRAN.R-project.org/package=shiny)
+
+## Pros
+
+- As often with `r rp()`, one of the major strength is the community: 
+
+--
+  - academics / researchers
+  - growing bigger and bigger
+  
+</br>
+
+--
+
+- List of resources: [awesome-shiny-extensions](https://github.com/nanxstats/awesome-shiny-extensions)
+
 
 ---
 

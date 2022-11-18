@@ -74,12 +74,35 @@ class: inverse, center, middle
 
 --
 
-### 1. Understand what is reactive programming
+### 1. What is reactive programming?
 
 --
 
-### 2. 
+### 2. How is a Shiny app structured?
 
+--
+
+### 3. What are the workflows in a Shiny app?
+
+--
+
+### 4. How to debug a Shiny app?
+
+---
+# Technical objectives
+
+### Build a Shiny app that: 
+
+--
+- uses tabular and spatial data 
+
+--
+- allows a user to filter the data based on
+  - table attributes
+  - spatial attributes
+
+--
+- provides a summary of the filtered data
 
 
 ```{R, child = "_01_shiny_intro.Rmd"}

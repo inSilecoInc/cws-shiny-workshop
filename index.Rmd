@@ -24,7 +24,7 @@ htmltools::tagList(
   ),
   rmarkdown::html_dependency_font_awesome()
 )
-xaringanExtra::use_scribble()
+# xaringanExtra::use_scribble()
 ```
 
 
@@ -43,17 +43,16 @@ class: title-slide, middle
   `r format(Sys.time(), '%B %d, %Y')`
   <br>
   .font200[
-  [`r gh()`](https://github.com/inSilecoInc)
-  [`r db()`](link_to_data)
-  [`r rfa("file-pdf")`](link_to_pdf_version)
+  [`r gh()`](https://github.com/inSilecoInc/cws-shiny-workshop)
+  [`r db()`](http://www.insileco.io/cws-shiny-workshop/data_and_script.zip)
   ]
 ]
 
 <br>
 <img src="img/logoW.png" width="140px"></img>
 
-<!-- Modify accordingly -->
-<!-- [![deploy workshop](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml) -->
+[![deploy workshop](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml)
+
 
 .instructors[Content under [`r rfa("creative-commons")` `r rfa("creative-commons-by")`](https://creativecommons.org/licenses/by/4.0/) unless otherwise specified.]
 
@@ -135,8 +134,6 @@ class: inverse, center, middle
 
 `r lk()` [Shiny spatial](_03_shiny_spatial.Rmd)
 
-```{R, child = "_03_shiny_spatial.Rmd"}
-```
 
 ---
 class: inverse, center, middle

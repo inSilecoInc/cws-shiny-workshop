@@ -118,7 +118,7 @@ class: inverse, center, middle
 ---
 class: inverse, center, middle
 
-# Learning objectives
+# Minimal shiny
 
 ![:custom_hr]()
 
@@ -150,7 +150,7 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
-`r lk()` [Shiny in prod](_05_shiny_in_prod.html)
+`r lk()` [Shiny in production](_05_shiny_in_prod.html)
 
 
 

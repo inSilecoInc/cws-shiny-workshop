@@ -26,7 +26,9 @@ jobs:
           rmarkdown::render("index.Rmd", "all")
           rmarkdown::render("_01_shiny_intro.Rmd", "all")
           rmarkdown::render("_02_shiny_mini.Rmd", "all")
-          rmarkdown::render("_04_shiny_in_prod.Rmd", "all")
+          rmarkdown::render("_03_shiny_spatial.Rmd", "all")
+          rmarkdown::render("_04_shiny_synthesis.Rmd", "all")
+          rmarkdown::render("_05_shiny_in_prod.Rmd", "all")
         shell: Rscript {0}
 
       - name: Build the entire presentation

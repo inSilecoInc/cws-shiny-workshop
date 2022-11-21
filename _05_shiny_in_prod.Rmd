@@ -11,20 +11,17 @@ output:
       beforeInit: "macros.js"
 ---
 
-
 ```{r include = FALSE}
 source("_setup.R")
 ```
 
----
 class: inverse, center, middle
 
-# `r rfa("rocket")` Shiny in prod
+# `r rfa("rocket")` Shiny in production
 
 ![:custom_hr]()
 
-## `r ck()` An overview (~20min)
-
+## An overview
 
 
 ---
@@ -52,15 +49,15 @@ class: inverse, center, middle
 
 ### `r bk()` https://mastering-shiny.org/scaling-intro.html
 
-<br>
-
 --
 
-### General best practices (software engineering principles)
+## Follow general best practices 
+### (software engineering principles)
 
 * Good design of your code (easy to read, non-redundant, etc.)
-* version control tool (e.g. `r gt()`)
-* testing
+* version control such (e.g. `r gt()`)
+* use a good code editor
+* test your application
 * etc.
 
 
@@ -69,31 +66,40 @@ class: inverse, center, middle
 
 ## Pay attention to your `r rp()` code
 
-### Use functions to avoid redundancy
-
-* `r bk()` [Improving performance](https://adv-r.hadley.nz/perf-improve.html)
+* Use functions to avoid redundancy
+* Use mapping functions [`purrr`](https://CRAN.R-project.org/package=purrr)
 
 --
 
-### Profile and optimize your `r rp()` code
+## Profile and optimize your `r rp()` code
 
-* `Rprof()`
-* `r rfa("box")` [`microbenchmark`](https://CRAN.R-project.org/package=microbenchmark)
-* `r rfa("box")` [`profvis`](https://CRAN.R-project.org/package=profvis) ([flame graph](https://queue.acm.org/detail.cfm?id=2927301))
-* `r rfa("bookmark")` [Improving performance](https://adv-r.hadley.nz/perf-improve.html) (`r bk()` Advanced R) 
-* `r bk()` [Efficient R programming](https://csgillespie.github.io/efficientR/)
+* profile your code
+  * `Rprof()`
+  * `r rfa("box")` [`profvis`](https://CRAN.R-project.org/package=profvis) ([flame graph](https://queue.acm.org/detail.cfm?id=2927301))
+* benchmark
+  * `r rfa("box")` [`microbenchmark`](https://CRAN.R-project.org/package=microbenchmark)
+* read about this 
+  * `r rfa("bookmark")` [Improving performance](https://adv-r.hadley.nz/perf-improve.html) (`r bk()` Advanced R) 
+  * `r bk()` [Efficient R programming](https://csgillespie.github.io/efficientR/)
 
 
 ---
 # Best practices
 
-### When working with complex shiny apps, your code base gets longer
+### **More complex shiny longer codebase**
 
 --
 
-### Try to create independent components
+### Try to create **independent components**
 
---
+* functions in separate `.R` files in `R/`
+* external package(s)
+* modules
+
+
+---
+# Best practices
+
 
 ### Use [modules](https://mastering-shiny.org/scaling-modules.html) 
 
@@ -121,18 +127,24 @@ yourModuleServer <- function(id, geoms, preview, u_details) {
 
 ## Turn your shiny app into an `r rp()` package 
 
-### `r ar()` Access to robust tools to develop your app (a well-defined dev workflow)
+### `r ar()` Access to robust tools to develop your app (namely `r rfa("box")` [`devtools`](https://CRAN.R-project.org/package=devtools))
 
-### Testing 
+--
 
-* `r rfa("box")` [`devtools`](https://CRAN.R-project.org/package=devtools)
-*  Unit tests for your functions (see `r rfa("bookmark")` https://r-pkgs.org/testing-basics.html#introducing-testthat)
+### **Testing**
+
+* Critical part of the development of your app
+* Unit tests for your functions (see `r rfa("bookmark")` https://r-pkgs.org/testing-basics.html#introducing-testthat)
 * Test reactivity with `testServer()`(see `r rfa("bookmark")` https://mastering-shiny.org/scaling-testing.html)
 * Test your application visual (using snapshot, see https://testthat.r-lib.org/articles/snapshotting.html)
 
 
 ---
 # Best practices
+
+### Avoid heavy computations when possible
+
+--
 
 ### Load tests
 
@@ -145,11 +157,9 @@ yourModuleServer <- function(id, geoms, preview, u_details) {
 
   * Save the output result of a given action and reuse it instead of redoing the computation
   * Use `bindCache()` (see also `r rfa("box")` [`cachem`](https://CRAN.R-project.org/package=cachem))
+  * `r lk()` https://shiny.rstudio.com/articles/caching.html
 
 
 --
-<br> 
 
-* `r lk()` https://shiny.rstudio.com/articles/caching.html
 * `r rfa("youtube")` https://www.rstudio.com/resources/rstudioconf-2019/shiny-in-production-principles-practices-and-tools/
-

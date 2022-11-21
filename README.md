@@ -2,67 +2,34 @@
 [![deploy workshop](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml/badge.svg)](https://github.com/inSilecoInc/cws-shiny-workshop/actions/workflows/deploy.yml)
 
 
-## Slides 
+## Workshop outline
 
-* [Introduction]()
-* [Shiny in production]()
+* [Introduction](_01_shiny_intro.html) ~1h30min
+  * general introduction
+  * reactive programming 
+* [Minimal shiny](_02_shiny_mini.html) ~2h
+  * creating your first minimal application 
+  * practice
+* [Shiny spatial](_03_shiny_spatial.html) ~3h
+  * creating a more complex shiny app with spatial operations
+  * more practice
+* [Shiny in production](_04_shiny_in_prod.html) ~15min
+  * an overview of advanced topics
 
 
 ## Installation 
 
-To render the slides, `iseWorkshops` must be installed. 
+If you are interested, you can re-build the slides, to do so, you need to
+1. clone this repository,
+2. open R (or RStudio),
+3. set the working repository to the newly cloned repository,
+4. use the following code
+
 
 ```{R}
 install.packages("remotes")
-remotes::install_github("inSilecoInc/iseWorkshops")
+remotes::install_deps()
+rmarkdown::render("cws_shiny_workshop.Rmd", "all")
 ```
 
 
-## Outline (2*3h)
-
-### Theory (`01_shiny_intro` TBR, 1h30, 45-45 KC) 
-
-1. What is shiny?
-2. What is reactive programming?
-3. How does it work?
-4. Front-end versus Backend (UI versus server)
-
-
-### V1: Minimal shiny app (`02_shiny_mini` a revoir, 1h30, 45-45, DB) 
-
-- css/html
-- functions (output/render)
-- prototype -> show flows (what triggers changes)
-- show and interact with one table 
-- debugger shiny app (oublier une reactiv var)?
-
-* **output**: 
-  * minimal code for V1 
-  * table + filtrer (dropdown) (selection on the left, ouput on the right)
-  * use only one database: bird atlas (bird open canada)
-
-
-### V2: Table + Spatial app (`02_shiny_spatial` a refaire, 1h30, 45-45, SV) 
-
-- show flows (what triggers changes)
-- merge, crop and take what's in the selected area
-- filter data (spatial filter)
-
-* **output**: 
-  * minimal code for V2
-  * tab2: add a map + spatial filter (species)
-
-
-### V3: Table + Spatial app + Synthesis (`03_shiny_final` a faire SV) 
-
-- use data obtained form spatial filter for a synthesis (data visualisation) 
-- deploy the app on a GH repo and on shiny servers.
-
-* **output**: 
-  * minimal code for V3
-
-
-### V4: Shiny in prod, an overview  
-
-
-### create a different repo for the shiny apps

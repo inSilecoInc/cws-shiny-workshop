@@ -32,6 +32,12 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
+---
+class: inverse, center, middle
+
+# General introduction
+
+![:custom_hr]()
 
 ---
 # Shiny applications
@@ -51,6 +57,8 @@ class: inverse, center, middle
 
 --
 
+### - apps are cool and can be useful
+
 ### - interactive capabilities
 
 ### - micro-meso web applications tailored to our needs
@@ -58,7 +66,7 @@ class: inverse, center, middle
 
 --
 
-## Why not another framework?
+## Why not another technology?
 
 --
 
@@ -75,7 +83,7 @@ class: inverse, center, middle
 
 .pull-left[
 ### An `r rp()` package developed by [Posit](https://posit.co/)
-[`shiny`](https://cran.r-project.org/package=shiny) .font90[12/2012 (0.2.3) -- 10/2022 (1.7.3)]
+[`shiny`](https://cran.r-project.org/package=shiny) .font90[12/2012 (0.2.3) `r ar()` 10/2022 (1.7.3)]
 ]
 .pull-right[
 .left[[`r lg_shiny(24)`](https://cran.r-project.org/package=shiny)]
@@ -103,7 +111,7 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 
 ---
-# Shiny is a framework
+# Shiny is a framework to create apps
 
 .pull-left[
 <img src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" alt="" width="80%">
@@ -115,21 +123,67 @@ we wont go over details of new feature but important to have latest (minor) vers
 --
 
 .pull-right[
-
 > .font90[Shiny is a framework for creating web applications using R code. It is designed primarily with data scientists in mind, and to that end, you can create pretty complicated Shiny apps with no knowledge of HTML, CSS, or JavaScript.]
 
-* Frontend : 
-  - `r rfa("html5")` HTML, `r rfa("css3")` CSS3, `r rfa("js")` JavaScript 
+* You create the **frontend** and the **backend** with `r rp()`
+]
+
+---
+# Backend vs Frontend
+
+- Major distinctions in web applications
+
+--
+
+  * __Frontend__: what you see, refers to the interface
+
+--
+
+  * __Backend__: what's happening on the server (remote computer)
+
+--
+
+- With Shiny you are using `r rp()` to create both: 
+
+  * `r ey()` Frontend (User interface) 
+      * what you will see
+      * where inputs and outputs are displayed
+      * `ui`: an **object** (a tag list, includes HTML content)
+
+  * `r cg()` Backend
+      * the rules that link inputs and outputs
+      * `server`: a **function**
+  
+
+---
+# UI vs Server
+
+
+## UI (Frontend) : 
+  - what users will interact with (operation are done inside your web browser, so on your computer)
+  - `r rfa("html5")` HTML, `r rfa("css3")` CSS, `r rfa("js")` JavaScript 
   - via `r rp()` (partially or entirely)
-* Backend : 
-  - `r rp()`
+
+--
+
+## Server (Backend) : 
+  - the operations done under the hood on a remote computer (a server).
+  - basically `r rp()` (running on the remote computer)
   - other languages via `r rp()`
 
-]
+--
+
+### `r tr()`  inspector will show you HTML, CSS and JavaScript, not `r rp()` code,
+### `r tr()` when you are developing the app, the server is your computer!
+
 
 
 ---
 # Shiny has its own ecosystem
+
+### Not just one package!
+
+--
 
 ### See https://shiny.rstudio.com/
 
@@ -139,11 +193,12 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 
 
-
+---
+# Shiny pros and cons
 
 ## Pros
 
-- `r rp()` in back end! Use all `r rp()`'s capabilities (data analysis, visualization, etc.) in a Web application! 
+- Use all `r rp()`'s capabilities (data analysis, visualization, etc.) in a Web application! 
 
 --
 
@@ -159,27 +214,16 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 --
 
-
-
----
-# [`shiny`](https://CRAN.R-project.org/package=shiny)
-
-## Pros
-
-- As often with `r rp()`, one of the major strength is the community: 
+- As often with `r rp()`, one of the major strength is the community: (academics / researchers)
 
 --
-  - academics / researchers
-  - growing bigger and bigger
   
-</br>
-
---
+- Growing bigger and bigger, getting better and better
+  
 
 
 ---
-
-# [`shiny`](https://CRAN.R-project.org/package=shiny)
+# Shiny pros and cons
 
 ## Cons
 
@@ -187,7 +231,7 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 --
 
-- Takes some time to learn / more complex mental model
+- Takes some time to learn, require a more complex mental model.
 
 --
 
@@ -195,30 +239,32 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 --
 
-- Because it is more complex (another layer), it is worthwhile to really ponder whether a shiny application is necessary for what we wish to accomplish.
+- Because it is more complex (another layer), it is worthwhile to really ponder whether a shiny application is necessary for what we wish to accomplish. _"Do you really need it?"_
 
 
 ---
-# UI vs Server / Backend vs Frontend
+# Shiny, an example `r lc()`
 
-- Major distinctions made in web applications
+## Spatial reporting tool
 
---
+### **Bedford Institute of Oceanography, DFO**
 
-- UI (User interface) `r ey()`: what users will interact with (operation are done inside your web browser, so on your computer)
-
---
-
-- Server `r cg()` : the operations done under the hood on a remote computer (a server).
-
+* `r gh()` https://github.com/inSilecoInc/shinySpatialApp_origin
 
 --
 
-- With Shiny you are using `r rp()` to create both: 
+* `r gh()` https://github.com/dfo-mar-odis/shinySpatialApp
 
-  - `r ey()` `ui`: an **object** (a tag list, includes HTML content)
-  - `r cg()` `server`: a **function**
-  - `shinyApp(ui, server)`
+* `r lk()` https://github.com/AtlanticR/reproducible-rap-report/blob/main/TechReport-AfterReview.pdf.pdf
+
+
+---
+class: inverse, center, middle
+
+# `r nf()` Reactive programming 
+
+![:custom_hr]()
+
 
 
 ---
@@ -231,28 +277,24 @@ we wont go over details of new feature but important to have latest (minor) vers
 --
 
 * When I change `Number of obs` to `n` then :
-  - `n` values are drawn,
+  - `n` new values are drawn,
   - a new histogram is generated and displayed
 --
 
 * **reactivity**!
-    - **reactive programming** = **event-driven programming** the event is "data changed" (think "spreadsheet")
+    - **reactive programming** = **event-driven programming** the event is "data has changed" (think "spreadsheet")
     - see [this answer on `r rfa("stack-overflow")`](https://stackoverflow.com/questions/34495117/how-is-reactive-programming-different-than-event-driven-programming), 
-
---
-
-* BTW, If you use the inspector you'll see HTML, CSS and JavaScript, not the `r rp()` code!
 
 
 
 ---
 # Reactive programming
 
-- That's the tricky part! As `r rp()` users we do not use **reactive programming**
+- That's the tricky part! As `r rp()` users we do not use **reactive programming**.
 
 --
 
-- we are familiar with :
+- we are familiar with different paradigms:
   - **imperative programming**: "do this"
   - **functional programming**: we create and call functions
   - **array programming**: we apply operations on vectors
@@ -265,15 +307,23 @@ we wont go over details of new feature but important to have latest (minor) vers
 ---
 # Reactive programming
 
-
-- **imperative programming**: 
-> "poor 1 L of cold water, stir in 30 mL of lemon juice and add a tablespoon of map syrup"
+## Making lemonade...
 
 --
 
-- **declarative programming**:
-> "you have 1 L of cold water, 30 mL of lemon juice and a tablespoon of map syrup, make me a lemonade"
+- with **imperative programming**: 
+> "pour 1 L of cold water, stir in 30 mL of lemon juice and add 1 tablespoon of map syrup"
 
+--
+
+- with **declarative programming**:
+> "you have 1 L of cold water, 30 mL of lemon juice and 1 tablespoon of map syrup, make me a lemonade"
+
+--
+
+## So
+
+--
 
 - **reactive programming** = **event-driven programming** the event is "data changed" 
 
@@ -309,6 +359,9 @@ cat("a =", a, " | ", "b =", b)
 Nope!
 
 
+???
+DO NOT BE SHY AND ASK US WHAT IS THAT PIECE OF CODE
+
 ---
 # Reactive programming
 
@@ -321,8 +374,7 @@ reactiveConsole(TRUE)
 --
 
 ```{R, react2}
-a <- reactiveVal()
-a(2)
+a <- reactiveVal(2)
 b <- reactive({2 * a()})
 cat("a =", a(), " | ", "b =", b())
 ```
@@ -356,8 +408,8 @@ Yes! Because now variables are somehow linked!
 
 --
 
-* origins of the graph
-* could be any `r rp()` object 
+* starting points, no reactivity without them!
+* could be any `r rp()` objects
 * two ways to initiate them: `reactiveVal()` and `reactiveValues()`
 
 
@@ -411,10 +463,10 @@ no parentheses
   ![:scale 30%](img/reactive_graphs/reactExp.png)
 ]
 
-* depends on an input (reactive values or another reactive expression)
+* depends on reactive values or other reactive expressions
 * can be used in another reactive expression
 * special functions (lazy and cached) 
-* intermediate nodes 
+* intermediate entities
 * can be used to avoid duplication in your reactive code
 
 ---
@@ -465,8 +517,9 @@ d()
 ```
 
 ???
-I have to call `d()`
+I have to call `d()`, so not automatically!
 missing something that would watch change in a or a2!
+use runif(1) instead of 2 --> exercice?
 
 ---
 # Reactive programming .font80[&nbsp; `r ar()` building blocks]
@@ -482,6 +535,27 @@ missing something that would watch change in a or a2!
 * will automatically re-execute when those dependencies change
 * eager (“infectious" eagerness) and forgetful
 * the value returned by an observer is ignored
+
+--
+
+<br>
+
+.center[![:scale 32%](img/reactive_graphs/simpleGraph0.png)]
+
+--
+
+.center[![:scale 60%](img/reactive_graphs/simpleGraph.png)]
+
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+.pull-left[
+  ## 3. Observers
+]
+.pull-right[
+  ![:scale 25%](img/reactive_graphs/reactObs.png)
+]
 
 ```{R reactExp5}
 observe(d())
@@ -501,7 +575,9 @@ to do in console
 `r lc()` Create a reactive chain that allows you to convert
 
 * Fahrenheit to Celsius
-  * hint: make `temp` your reactive variable that have the temperature in Fahrenheit
+  * hints: 
+    - make `temp` your reactive variable that have the temperature in Fahrenheit
+    - 1`C` = (1`F` - 32) * 5/9 (https://en.wikipedia.org/wiki/Fahrenheit)
 
 --
 
@@ -522,15 +598,15 @@ to do in console
 ---
 # `r tr()` Special cases
 
-### Special cases used all the time to let Shiny do its magic!
+### Special cases that we use all the time to let Shiny do its magic!
 
 --
 
-#### - **`input`**: read-only reactive values
+#### - **`input`**: read-only **reactive values**
 
 --
 
-#### - **`output`**: special observers
+#### - **`output`**: special **observers**
 
 --
 
@@ -554,7 +630,7 @@ to do in console
 
 --
 
-* `r ey()` UI
+* `r ey()` UI: where the different elements should be
 
 ```R
 # Define the UI
@@ -567,7 +643,7 @@ ui <- bootstrapPage(
 ---
 # Study case 
 
-* `r cg()` Server
+* `r cg()` Server: the rules / the reactivity chain(s)
 
 ```R
 # Define the server code
@@ -648,8 +724,6 @@ Shiny is gonna take care of it for you
 reactiveConsole(FALSE)
 ```
 
-- See [Mastering Shiny](https://mastering-shiny.org/reactivity-intro.html) for more details.
-
 
 ---
 # Exercise 
@@ -658,4 +732,3 @@ reactiveConsole(FALSE)
 
 
 `r cdw(minutes = 15, seconds = 0, margin = "1em")`
-

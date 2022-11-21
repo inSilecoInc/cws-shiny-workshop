@@ -46,8 +46,7 @@ reactiveConsole(TRUE)
 
 
 ## ---- react2------------------------------------------------------------------
-a <- reactiveVal()
-a(2)
+a <- reactiveVal(2)
 b <- reactive({2 * a()})
 cat("a =", a(), " | ", "b =", b())
 

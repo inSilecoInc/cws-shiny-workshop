@@ -134,6 +134,14 @@ class: inverse, center, middle
 
 `r lk()` [Shiny spatial](_03_shiny_spatial.Rmd)
 
+---
+class: inverse, center, middle
+
+# Shiny in prod
+
+![:custom_hr]()
+
+`r lk()` [Shiny in prod](_04_shiny_synthesis.Rmd)
 
 ---
 class: inverse, center, middle
@@ -142,7 +150,7 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
-`r lk()` [Shiny in prod](_04_shiny_in_prod.Rmd)
+`r lk()` [Shiny in prod](_05_shiny_in_prod.Rmd)
 
 
 

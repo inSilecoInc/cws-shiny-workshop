@@ -401,7 +401,27 @@ message(glue::glue("updating histogram with {length(bins)} bins"))
 ```
 
 ---
+
+class: inverse, center, middle
+
+# `r nf()` Exercise 1
+
+![:custom_hr]()
+
+## `r ck()` TODO - à ajuster
+
+---
 # Minimal Shiny App: And so it begins...
+
+***Context***
+
+> Some partner are in charge of determining key biodiversity area of sea birds in eastern canada
+and we would like us to help them by providing a tool that gather data and explore those areas. 
+
+
+---
+# Minimal Shiny App: And so it begins...
+
 
 ***Objective***:
 
@@ -592,3 +612,10 @@ head(densities)
 ]
 
 `r cdw(minutes = 20, seconds = 0, margin = "1em")`
+
+---
+# Solution 
+
+![](img/app1.png)
+
+https://github.com/inSilecoInc/cws-shiny-apps/blob/main/practice1/app.R

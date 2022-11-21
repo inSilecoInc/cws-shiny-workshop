@@ -277,12 +277,12 @@ class: inverse, center, middle
 --
 
 * When I change `Number of obs` to `n` then :
-  - `n` values are drawn,
+  - `n` new values are drawn,
   - a new histogram is generated and displayed
 --
 
 * **reactivity**!
-    - **reactive programming** = **event-driven programming** the event is "data changed" (think "spreadsheet")
+    - **reactive programming** = **event-driven programming** the event is "data has changed" (think "spreadsheet")
     - see [this answer on `r rfa("stack-overflow")`](https://stackoverflow.com/questions/34495117/how-is-reactive-programming-different-than-event-driven-programming), 
 
 
@@ -290,11 +290,11 @@ class: inverse, center, middle
 ---
 # Reactive programming
 
-- That's the tricky part! As `r rp()` users we do not use **reactive programming**
+- That's the tricky part! As `r rp()` users we do not use **reactive programming**.
 
 --
 
-- we are familiar with :
+- we are familiar with different paradigms:
   - **imperative programming**: "do this"
   - **functional programming**: we create and call functions
   - **array programming**: we apply operations on vectors
@@ -307,15 +307,23 @@ class: inverse, center, middle
 ---
 # Reactive programming
 
-
-- **imperative programming**: 
-> "poor 1 L of cold water, stir in 30 mL of lemon juice and add a tablespoon of map syrup"
+## Making lemonade...
 
 --
 
-- **declarative programming**:
-> "you have 1 L of cold water, 30 mL of lemon juice and a tablespoon of map syrup, make me a lemonade"
+- with **imperative programming**: 
+> "pour 1 L of cold water, stir in 30 mL of lemon juice and add 1 tablespoon of map syrup"
 
+--
+
+- with **declarative programming**:
+> "you have 1 L of cold water, 30 mL of lemon juice and 1 tablespoon of map syrup, make me a lemonade"
+
+--
+
+## So
+
+--
 
 - **reactive programming** = **event-driven programming** the event is "data changed" 
 
@@ -351,6 +359,9 @@ cat("a =", a, " | ", "b =", b)
 Nope!
 
 
+???
+DO NOT BE SHY AND ASK US WHAT IS THAT PIECE OF CODE
+
 ---
 # Reactive programming
 
@@ -363,8 +374,7 @@ reactiveConsole(TRUE)
 --
 
 ```{R, react2}
-a <- reactiveVal()
-a(2)
+a <- reactiveVal(2)
 b <- reactive({2 * a()})
 cat("a =", a(), " | ", "b =", b())
 ```
@@ -398,8 +408,8 @@ Yes! Because now variables are somehow linked!
 
 --
 
-* origins of the graph
-* could be any `r rp()` object 
+* starting points, no reactivity without them!
+* could be any `r rp()` objects
 * two ways to initiate them: `reactiveVal()` and `reactiveValues()`
 
 
@@ -453,10 +463,10 @@ no parentheses
   ![:scale 30%](img/reactive_graphs/reactExp.png)
 ]
 
-* depends on an input (reactive values or another reactive expression)
+* depends on reactive values or other reactive expressions
 * can be used in another reactive expression
 * special functions (lazy and cached) 
-* intermediate nodes 
+* intermediate entities
 * can be used to avoid duplication in your reactive code
 
 ---
@@ -507,8 +517,9 @@ d()
 ```
 
 ???
-I have to call `d()`
+I have to call `d()`, so not automatically!
 missing something that would watch change in a or a2!
+use runif(1) instead of 2 --> exercice?
 
 ---
 # Reactive programming .font80[&nbsp; `r ar()` building blocks]
@@ -524,6 +535,27 @@ missing something that would watch change in a or a2!
 * will automatically re-execute when those dependencies change
 * eager (“infectious" eagerness) and forgetful
 * the value returned by an observer is ignored
+
+--
+
+<br>
+
+.center[![:scale 32%](img/reactive_graphs/simpleGraph0.png)]
+
+--
+
+.center[![:scale 60%](img/reactive_graphs/simpleGraph.png)]
+
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+.pull-left[
+  ## 3. Observers
+]
+.pull-right[
+  ![:scale 25%](img/reactive_graphs/reactObs.png)
+]
 
 ```{R reactExp5}
 observe(d())
@@ -543,7 +575,9 @@ to do in console
 `r lc()` Create a reactive chain that allows you to convert
 
 * Fahrenheit to Celsius
-  * hint: make `temp` your reactive variable that have the temperature in Fahrenheit
+  * hints: 
+    - make `temp` your reactive variable that have the temperature in Fahrenheit
+    - 1`C` = (1`F` - 32) * 5/9 (https://en.wikipedia.org/wiki/Fahrenheit)
 
 --
 
@@ -564,15 +598,15 @@ to do in console
 ---
 # `r tr()` Special cases
 
-### Special cases used all the time to let Shiny do its magic!
+### Special cases that we use all the time to let Shiny do its magic!
 
 --
 
-#### - **`input`**: read-only reactive values
+#### - **`input`**: read-only **reactive values**
 
 --
 
-#### - **`output`**: special observers
+#### - **`output`**: special **observers**
 
 --
 
@@ -596,7 +630,7 @@ to do in console
 
 --
 
-* `r ey()` UI
+* `r ey()` UI: where the different elements should be
 
 ```R
 # Define the UI
@@ -609,7 +643,7 @@ ui <- bootstrapPage(
 ---
 # Study case 
 
-* `r cg()` Server
+* `r cg()` Server: the rules / the reactivity chain(s)
 
 ```R
 # Define the server code
@@ -690,8 +724,6 @@ Shiny is gonna take care of it for you
 reactiveConsole(FALSE)
 ```
 
-- See [Mastering Shiny](https://mastering-shiny.org/reactivity-intro.html) for more details.
-
 
 ---
 # Exercise 
@@ -700,4 +732,3 @@ reactiveConsole(FALSE)
 
 
 `r cdw(minutes = 15, seconds = 0, margin = "1em")`
-

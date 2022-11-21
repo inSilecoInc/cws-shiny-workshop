@@ -17,252 +17,92 @@ source("_setup.R")
 ```
 
 
----
 class: inverse, center, middle
 
-# `r nf()` Spatial Shiny Apps
+# `r nf()` Practice 2
 
 ![:custom_hr]()
 
-## `r ck()` ~20min
-
-
----
-# Spatial Features
-
-- Any `r rp()` packages can be used to do computation. 
-
---
-
-- Special output for `leaflet` 
-
---
-
-- special module in [`mapedit`](https://github.com/r-spatial/mapedit)
+## `r ck()` ~1h20min
 
 ---
-# [Reactive output](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/)
+# Interactive spatial shiny app 
 
-.font90[
-| Output function (`ui`) | Render function (`server`) | Creates     |
-| :--------------------- | :------------------------- | :-----------|
-| `dataTableOutput`      | `renderDataTable()`        | DataTable   |
-| `htmlOutput`           | `renderImage()`            | raw HTML    |
-| `imageOutput`          | `renderImage()`            | image       |
-| `plotOutput`           | `renderPlot()`             | plot        |
-| `tableOutput`          | `renderTable()`            | table       |
-| `textOutput`           | `renderText()`             | text        |
-| `uiOutput`             | `renderUI()`               | raw HTML    |
-| `verbatimTextOutput`   | `renderVerbatimText()`     | text        |
-| `leafletOutput()`      | `renderLeaflet()`          | leaflet map |
+After some discussion, the partner would like us to add some new spatial feature.
+We will add a new tab with the bird density polygons and two new sliders to specify a bbox area (latitude and longitude range).
+
+.pull-left[
+***Data*** `r db()`
+- Density polygons (`AtlasGrid-GrilleAtlas.gdb`, layer: `AtlasGrid_GrilleAtlas`)
 ]
 
----
-# Spatial Shiny App: `ui` `r ey()`
+.pull-right[
+***What to do***
 
-### Previously
+- If not already done, download the data [`r fl()`](https://github.com/inSilecoInc/cws-shiny-template/blob/main/setup.R)
+- Import the layer `AtlasGrid_GrilleAtlas` from the `AtlasGrid-GrilleAtlas.gdb` geodatabase as a global variable
+- Load the layer as a spatial `sf` object (`sf::st_read`), transform the original projection to WGS84 standard
+]
 
-```{R, eval = FALSE}
-ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
-      h1("Sidebar"),
-      selectInput(inputId = "species", label = "Select species", choices = "placeholder")
-    ),
-    mainPanel(
-      h1("Main Panel"),
-      plotOutput("map", width = "100%")
-    )
-  )
-)
-```
+`r cdw(minutes = 10, seconds = 0, margin = "1em")`
 
 
 ---
-# Spatial Shiny App: `ui` `r ey()`
+# Interactive spatial shiny app
 
-### Now
+.pull-left[
+***Data*** `r db()`
+- Density polygons (`AtlasGrid-GrilleAtlas.gdb`, layer: `AtlasGrid_GrilleAtlas`)
 
-```{R, eval = FALSE}
-library(leaflet)
-ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
-      h1("Sidebar"),
-      selectInput(inputId = "species", label = "Select species", choices = "placeholder")
-    ),
-    mainPanel(
-      h1("Main Panel"),
-      leafletOutput("map", width = "100%", height = "90vh")
-    )
-  )
-)
-```
+***new user inputs*** (ui) `r ey()`
+- `sliderInput`: latitude
+- `sliderInput`: longitude
 
----
-# Spatial Shiny App: `server` `r cg()`
+***new server output*** `r cg()`
+- filter spatial data based on the new sliders
+- render a leaflet map: filled with the density sum (selected species)
+]
 
-### Previously
+.pull-right[
+***What to do***
+- First, try to first make the map reactive to the latitude and longitude sliders
+- Then, set the polygons color fill based on the density sum of the selected species
+- Draw the new reactive graph for the user inputs and server outputs
+]
 
-```{R, eval = FALSE}
-library(sf)
-library(dplyr)
-server <- function(input, output, session) {
-  cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
-                   coords = c("CentroideX", "CentroideY"),
-                   crs = 4326)
-  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
-  # output$map <- renderPlot(...)
-}
-```
+`r cdw(minutes = 30, seconds = 0, margin = "1em")`
 
 
 ---
-# Spatial Shiny App: `server` `r cg()`
+# Interactive spatial shiny app
 
-### Now
+.pull-left[
+***Data*** `r db()`
+- Density polygons (`AtlasGrid-GrilleAtlas.gdb`, layer: `AtlasGrid_GrilleAtlas`)
 
-```{R, eval = FALSE}
-library(sf)
-library(dplyr)
-cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
-                 coords = c("CentroideX", "CentroideY"),
-                 crs = 4326)
-server <- function(input, output, session) {
-  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
-  output$map <- renderLeaflet(
-    {
-      tmp <- cdqs %>% 
-        filter(Espece.Species.EN == !!input$species) 
-      leaflet(tmp) %>% 
-      setView(lng = -63, lat = 48, zoom = 5) %>% 
-      addProviderTiles("CartoDB.Positron") %>%
-      addCircleMarkers(
-        stroke = FALSE,
-        popup = ~as.character(Nom.de.colonie.Colony.name))
-    }
-  )
-}
-```
+***new user inputs*** (ui) `r ey()`
+- `sliderInput`: latitude
+- `sliderInput`: longitude
 
---
+***new server output*** `r cg()`
+- filter spatial data based on the selected latitude and longitude range
+- render a leaflet map filled with the density sum of the selected species
+]
 
-```{R, eval = FALSE}
-shinyApp(ui, server)
-```
+.pull-right[
+***What to do***
+- Draw the reactive graph for the user inputs and server outputs 
+to have better overview of the new reactive elements
+]
 
+`r cdw(minutes = 5, seconds = 0, margin = "1em")`
 
 ---
-# mapEdit module:  `ui` `r ey()`
+# Solution 
 
-```{R, eval = FALSE}
-library(mapedit)
-ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
-      h1("Sidebar"),
-      selectInput(inputId = "species", label = "Select species", choices = "placeholder")
-    ),
-    mainPanel(
-      h1("Main Panel"),
-      mapedit::editModUI("map", width = "100%", height = "90vh")
-    )
-  )
-)
-```
+![](img/app2.png)
 
----
-# mapEdit module: `server` `r cg()`
-
-
-```{R, eval = FALSE}
-library(sf)
-library(dplyr)
-cdqs <- st_as_sf(x = read.csv('output/CDQS_BIOMQ_2017.csv'),
-                 coords = c("CentroideX", "CentroideY"),
-                 crs = 4326)
-
-server <- function(input, output, session) {
-  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
-  observeEvent(input$species, {
-    tmp <- cdqs %>% 
-      filter(Espece.Species.EN == !!input$species) 
-    map <- leaflet(tmp) %>% 
-      setView(lng = -63, lat = 48, zoom = 5) %>% 
-      addProviderTiles("CartoDB.Positron") %>%
-      addCircleMarkers(
-        stroke = FALSE,
-        popup = ~as.character(Nom.de.colonie.Colony.name))
-    callModule(editMod, leafmap = map, id = "map")
-  }, ignoreNULL = FALSE)
-}
-```
-
-
-
----
-# mapEdit module:  `ui` `r ey()`
-
-```{R, eval = FALSE}
-ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
-      h1("Sidebar"),
-      selectInput(inputId = "species", label = "Select species", choices = "placeholder"),
-      actionButton('save', 'Save from Map', icon = icon("download"))
-    ),
-    mainPanel(
-      h1("Main Panel"),
-      mapedit::editModUI("map", width = "100%", height = "90vh")
-    )
-  )
-)
-```
-
----
-# mapEdit module: `server` `r cg()`
-
-
-```{R, eval = FALSE}
-server <- function(input, output, session) {
-  updateSelectInput(session, "species", choices = unique(cdqs$Espece.Species.EN))
-  observeEvent(input$species, {
-    tmp <- cdqs %>% 
-      filter(Espece.Species.EN == !!input$species) 
-    map <- leaflet(tmp) %>% 
-      setView(lng = -63, lat = 48, zoom = 5) %>% 
-      addProviderTiles("CartoDB.Positron") %>%
-      addCircleMarkers(
-        stroke = FALSE,
-        popup = ~as.character(Nom.de.colonie.Colony.name))
-    edits <<- callModule(editMod, leafmap = map, id = "map")
-  })
-  observeEvent(input$save, {
-    geom <- edits()$finished
-    if (!is.null(geom)) {
-       assign('new_geom', geom, envir = .GlobalEnv)
-       sf::write_sf(geom, 'new_geom.geojson', delete_layer = TRUE, delete_dsn = TRUE)
-     } # see https://github.com/r-spatial/mapedit/issues/95
-   })
-}
-```
-
-
----
-# 1 App 1 folder 
-
-<br>
-
-### atlasv2 [`r fd()`](https://github.com/inSilecoInc/wksh_raster_CWS/raw/gh-pages/demo/atlasv2.zip)
- 
-- version with leaflet 
-
-<br>
-
-### atlasv3 [`r fd()`](https://github.com/inSilecoInc/wksh_raster_CWS/raw/gh-pages/demo/atlasv3.zip)
-
-- version with mapedit
-
+https://github.com/inSilecoInc/cws-shiny-apps/blob/main/practice2/app.R
 
 ---
 # Examples

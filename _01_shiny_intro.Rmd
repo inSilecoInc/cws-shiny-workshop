@@ -32,6 +32,12 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
+---
+class: inverse, center, middle
+
+# General introduction
+
+![:custom_hr]()
 
 ---
 # Shiny applications
@@ -51,6 +57,8 @@ class: inverse, center, middle
 
 --
 
+### - apps are cool and can be useful
+
 ### - interactive capabilities
 
 ### - micro-meso web applications tailored to our needs
@@ -58,7 +66,7 @@ class: inverse, center, middle
 
 --
 
-## Why not another framework?
+## Why not another technology?
 
 --
 
@@ -75,7 +83,7 @@ class: inverse, center, middle
 
 .pull-left[
 ### An `r rp()` package developed by [Posit](https://posit.co/)
-[`shiny`](https://cran.r-project.org/package=shiny) .font90[12/2012 (0.2.3) -- 10/2022 (1.7.3)]
+[`shiny`](https://cran.r-project.org/package=shiny) .font90[12/2012 (0.2.3) `r ar()` 10/2022 (1.7.3)]
 ]
 .pull-right[
 .left[[`r lg_shiny(24)`](https://cran.r-project.org/package=shiny)]
@@ -103,7 +111,7 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 
 ---
-# Shiny is a framework
+# Shiny is a framework to create apps
 
 .pull-left[
 <img src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" alt="" width="80%">
@@ -115,21 +123,67 @@ we wont go over details of new feature but important to have latest (minor) vers
 --
 
 .pull-right[
-
 > .font90[Shiny is a framework for creating web applications using R code. It is designed primarily with data scientists in mind, and to that end, you can create pretty complicated Shiny apps with no knowledge of HTML, CSS, or JavaScript.]
 
-* Frontend : 
-  - `r rfa("html5")` HTML, `r rfa("css3")` CSS3, `r rfa("js")` JavaScript 
+* You create the **frontend** and the **backend** with `r rp()`
+]
+
+---
+# Backend vs Frontend
+
+- Major distinctions in web applications
+
+--
+
+  * __Frontend__: what you see, refers to the interface
+
+--
+
+  * __Backend__: what's happening on the server (remote computer)
+
+--
+
+- With Shiny you are using `r rp()` to create both: 
+
+  * `r ey()` Frontend (User interface) 
+      * what you will see
+      * where inputs and outputs are displayed
+      * `ui`: an **object** (a tag list, includes HTML content)
+
+  * `r cg()` Backend
+      * the rules that link inputs and outputs
+      * `server`: a **function**
+  
+
+---
+# UI vs Server
+
+
+## UI (Frontend) : 
+  - what users will interact with (operation are done inside your web browser, so on your computer)
+  - `r rfa("html5")` HTML, `r rfa("css3")` CSS, `r rfa("js")` JavaScript 
   - via `r rp()` (partially or entirely)
-* Backend : 
-  - `r rp()`
+
+--
+
+## Server (Backend) : 
+  - the operations done under the hood on a remote computer (a server).
+  - basically `r rp()` (running on the remote computer)
   - other languages via `r rp()`
 
-]
+--
+
+### `r tr()`  inspector will show you HTML, CSS and JavaScript, not `r rp()` code,
+### `r tr()` when you are developing the app, the server is your computer!
+
 
 
 ---
 # Shiny has its own ecosystem
+
+### Not just one package!
+
+--
 
 ### See https://shiny.rstudio.com/
 
@@ -139,11 +193,12 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 
 
-
+---
+# Shiny pros and cons
 
 ## Pros
 
-- `r rp()` in back end! Use all `r rp()`'s capabilities (data analysis, visualization, etc.) in a Web application! 
+- Use all `r rp()`'s capabilities (data analysis, visualization, etc.) in a Web application! 
 
 --
 
@@ -159,27 +214,16 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 --
 
-
-
----
-# [`shiny`](https://CRAN.R-project.org/package=shiny)
-
-## Pros
-
-- As often with `r rp()`, one of the major strength is the community: 
+- As often with `r rp()`, one of the major strength is the community: (academics / researchers)
 
 --
-  - academics / researchers
-  - growing bigger and bigger
   
-</br>
-
---
+- Growing bigger and bigger, getting better and better
+  
 
 
 ---
-
-# [`shiny`](https://CRAN.R-project.org/package=shiny)
+# Shiny pros and cons
 
 ## Cons
 
@@ -187,7 +231,7 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 --
 
-- Takes some time to learn / more complex mental model
+- Takes some time to learn, require a more complex mental model.
 
 --
 
@@ -195,30 +239,32 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 --
 
-- Because it is more complex (another layer), it is worthwhile to really ponder whether a shiny application is necessary for what we wish to accomplish.
+- Because it is more complex (another layer), it is worthwhile to really ponder whether a shiny application is necessary for what we wish to accomplish. _"Do you really need it?"_
 
 
 ---
-# UI vs Server / Backend vs Frontend
+# Shiny, an example `r lc()`
 
-- Major distinctions made in web applications
+## Spatial reporting tool
 
---
+### **Bedford Institute of Oceanography, DFO**
 
-- UI (User interface) `r ey()`: what users will interact with (operation are done inside your web browser, so on your computer)
-
---
-
-- Server `r cg()` : the operations done under the hood on a remote computer (a server).
-
+* `r gh()` https://github.com/inSilecoInc/shinySpatialApp_origin
 
 --
 
-- With Shiny you are using `r rp()` to create both: 
+* `r gh()` https://github.com/dfo-mar-odis/shinySpatialApp
 
-  - `r ey()` `ui`: an **object** (a tag list, includes HTML content)
-  - `r cg()` `server`: a **function**
-  - `shinyApp(ui, server)`
+* `r lk()` https://github.com/AtlanticR/reproducible-rap-report/blob/main/TechReport-AfterReview.pdf.pdf
+
+
+---
+class: inverse, center, middle
+
+# `r nf()` Reactive programming 
+
+![:custom_hr]()
+
 
 
 ---
@@ -238,10 +284,6 @@ we wont go over details of new feature but important to have latest (minor) vers
 * **reactivity**!
     - **reactive programming** = **event-driven programming** the event is "data changed" (think "spreadsheet")
     - see [this answer on `r rfa("stack-overflow")`](https://stackoverflow.com/questions/34495117/how-is-reactive-programming-different-than-event-driven-programming), 
-
---
-
-* BTW, If you use the inspector you'll see HTML, CSS and JavaScript, not the `r rp()` code!
 
 
 

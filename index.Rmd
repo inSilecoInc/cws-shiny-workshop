@@ -112,7 +112,7 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
-`r lk()` [Introduction to Shiny](_01_shiny_intro.html)
+[`r lk()` Introduction to Shiny](_01_shiny_intro.html)
 
 
 ---
@@ -122,7 +122,7 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
-`r lk()` [Minimal shiny](_02_shiny_mini.html)
+[`r lk()` Minimal shiny](_02_shiny_mini.html)
 
 
 ---
@@ -132,7 +132,7 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
-`r lk()` [Shiny spatial](_03_shiny_spatial.html)
+[`r lk()` Shiny spatial](_03_shiny_spatial.html)
 
 ---
 class: inverse, center, middle
@@ -152,16 +152,6 @@ class: inverse, center, middle
 
 `r lk()` [Shiny in production](_05_shiny_in_prod.html)
 
-
-
----
-# Exercise 
-
-### Description
-
-Use countdown with `cdw`
-
-`r cdw(minutes = 15, seconds = 0)`
 
 
 

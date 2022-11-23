@@ -69,6 +69,10 @@ Now we will look at it from the perspective of building a shiny app
 
 ## Structure
 
+- *Optional*: General environment
+
+--
+
 - `r ey()` User interface object `ui`:
 
   - Controls layout and appearance of the app (where to position the element to display)
@@ -85,6 +89,21 @@ Now we will look at it from the perspective of building a shiny app
 --
 
 - A call to the shinyApp function `shinyApp(ui, server)`
+
+---
+# Minimal Shiy App: General environment 
+
+```{r, eval = FALSE}
+# Global variables can go here
+n <- 200
+```
+
+- Located before the `ui` object and `server` function 
+- Can be used to load any component that can be used by your app and needs to be loaded once only
+  - Libraries
+  - Data
+  - Functions 
+- These components should not affect your app efficiency once the app is loaded.
 
 
 ---
@@ -116,7 +135,6 @@ ui <- bootstrapPage(
 --
 
 5. add HTML content with tags (see [Shiny HTML Tags Glossary](https://shiny.rstudio.com/articles/tag-glossary.html))
-
 
 ---
 # Minimal Shiny App: `server` `r cg()`
@@ -157,6 +175,81 @@ capture R expressions and perform some light pre-processing to make the object s
 | `verbatimTextOutput`   | `renderVerbatimText()`     | text        |
 ]
 
+---
+# Minimal Shiny App: inputs & outputs 
+
+### `r nf()` Be aware of ***ids***
+
+```{r eval = FALSE}
+numericInput('n', 'Number of obs', n)
+plotOutput('plot')
+```
+
+---
+# Minimal Shiny App: inputs & outputs 
+
+### `r nf()` Be aware of ***ids***
+
+```{r eval = FALSE}
+numericInput(inputId = 'n', label = 'Number of obs', value = n)
+plotOutput(outputId = 'plot')
+```
+
+--
+
+### Typical inputs
+
+```{r eval = FALSE}
+whateverInput(inputId = "id", value = "val", ...)
+```
+
+--
+
+- Creates a list object called `input` with `inputId` as vectors containing the elements chosen by the user that can be used by the server to update displayed elements. 
+
+```{r, eval = FALSE}
+input <- list(id = 'val')
+input$id
+> "val"
+```
+
+---
+# Minimal Shiny App: inputs & outputs 
+
+### `r nf()` Be aware of ***ids***
+
+```{r eval = FALSE}
+plotOutput('plot')
+```
+
+---
+# Minimal Shiny App: inputs & outputs 
+
+### `r nf()` Be aware of ***ids***
+
+```{r eval = FALSE}
+plotOutput(outputId = 'plot')
+```
+
+--
+
+### Typical outputs
+
+.pull-left[
+`ui` `r ey()`
+
+```{r eval = FALSE}
+whateverOutput(inputId = "id", ...)
+```
+]
+
+.pull-right[
+`server` `r cg()`
+
+```{r, eval = FALSE}
+output$id <- renderWhatever(...)
+```
+]
 
 
 ---
@@ -618,3 +711,41 @@ head(densities)
 ![](img/app1.png)
 
 https://github.com/inSilecoInc/cws-shiny-apps/blob/main/practice1/app.R
+
+---
+
+# Pipes `|>` | `%>%`
+
+The pipe operators `|>` (`|` + `>`) (native R) or %>% (using `magrittr`) are a chained method that lets you pass an intermediate result to the next function.
+
+--
+
+.pull-left[
+```{r use_pipe, eval = FALSE}
+# Example with pipe operator
+dat <- dplyr::filter(
+  densities, 
+  Group %in% input$species
+) |>
+dplyr::select(Group)
+```
+]
+
+.pull-right[
+```{r nopipe, eval = FALSE}
+# Example without pipe operator
+dat <- dplyr::filter(
+  densities, 
+  Group %in% input$species
+)
+
+dat <- dplyr::select(dat, Group)
+```
+]
+
+
+
+.font70[`%>%` is similar to the `+` operator used by `ggplot2`]
+
+.font70[See [here](https://www.datacamp.com/community/tutorials/pipe-r-tutorial) for a full description of the history and use of pipes. 
+]

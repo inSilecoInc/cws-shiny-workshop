@@ -19,83 +19,508 @@ source("_setup.R")
 
 class: inverse, center, middle
 
-# `r nf()` Practice 2
+# `r nf()` Shiny spatial
 
 ![:custom_hr]()
 
 ## `r ck()` ~1h20min
 
 ---
+# Interactive mapping in `r rp()`
+
+### **Interactive visualization in general**
+
+.pull-left[
+- [`plotly`](https://cran.r-project.org/package=plotly) - uses [Plotly.js](https://plotly.com/javascript/)
+- [`highcharter`](https://cran.r-project.org/package=highcharter) - uses [Highcharts.js](https://jkunst.com/highcharter/)
+]
+
+--
+
+.pull-right[
+*Work well with vectorized spatial objects (`sf` and `sp`) in particular. Not so much with rasters yet.*
+]
+
+--
+
+### **Interactive mapping in particular**
+
+.pull-left[
+- [`leaflet`](https://cran.r-project.org/package=leaflet) - uses [Leaflet.js](https://leafletjs.com/)
+]
+
+--
+
+.pull-right[
+*Works well with vectors (`sf` and `sp`) and rasters (`raster` and `stars`)*
+]
+
+--
+
+### **`r rfa("r-project")` packages expanding `leaflet` capabilities**
+
+  - [`mapview`](https://cran.r-project.org/package=mapview)
+  - [`tmap`](https://cran.r-project.org/package=tmap)
+
+
+
+---
+# <a href="https://leafletjs.com/"><img src="https://leafletjs.com/docs/images/logo.png" alt="" width="25%"></a>
+
+> Leaflet is the leading open-source JavaScript library for mobile-friendly interactive maps. Weighing just about 39 KB of JS, it has all the mapping features most developers ever need.
+
+--
+
+<h3>Examples<sup>*</sup></h3>
+
+- [The New York Times](https://www.nytimes.com/projects/elections/2013/nyc-primary/mayor/map.html)
+- [The Washington Post](https://www.washingtonpost.com/sf/local/2013/11/09/washington-a-world-apart/)
+- [GitHub](https://github.blog/2013-06-13-there-s-a-map-for-that/)
+- [Open Street Map](https://www.openstreetmap.org/#map=11/46.8543/-71.3414)
+
+
+.font70[
+<sup>*</sup>Examples provided in R Studio's [Leaflet for R](https://rstudio.github.io/leaflet/) introduction
+]
+
+
+---
+# <a href="https://leafletjs.com/"><img src="https://leafletjs.com/docs/images/logo.png" alt="" width="25%"></a>
+
+## `r rfa("r-project")` package
+
+[`leaflet`](https://cran.r-project.org/package=leaflet) .font90[06/2015 (1.0.0) &nbsp; // &nbsp; 03/2022 (2.1.1)]
+
+- The `leaflet` package integrates and controls Leaflet maps through `r rfa("r-project")`
+
+--
+
+### **Features** - .font70[full list [here](https://rstudio.github.io/leaflet/)]
+
+.font90[
+- Interactive panning/zooming
+- Compose maps using:
+  - Map tiles
+  - Markers
+  - Polygons
+  - Lines
+  - Rasters
+  - Popups
+- Embed maps in knitr/R Markdown documents and Shiny apps
+]
+
+---
+# Package [`leaflet`](https://cran.r-project.org/package=leaflet)
+
+## Quick map
+
+.pull-left[
+Leaflet map centered on the St. Lawrence
+
+```{r, eval = FALSE, purl = FALSE}
+library(leaflet)
+lf <- leaflet() %>%
+ setView(lng = -63,
+         lat = 48,
+         zoom = 5)
+ addTiles(group = 'Default')
+lf
+```
+
+.font70[See [`setView()`](https://www.rdocumentation.org/packages/leaflet/versions/2.0.3/topics/setView) documentation for more options to set map extent.]
+
+
+]
+
+.pull-right[
+```{r load_leaflet, fig.width = 3.5, fig.height = 4.5, echo = FALSE}
+library(leaflet)
+lf <- leaflet() %>%
+ addTiles(group = 'Default') %>%
+ setView(lng = -63,
+         lat = 48,
+         zoom = 5)
+lf
+```
+]
+
+
+---
+# Package [`leaflet`](https://cran.r-project.org/package=leaflet)
+
+## Base maps
+
+.pull-left[
+`addTiles()` uses [OpenStreetMap](https://www.openstreetmap.org/) as default base map.
+
+Use `addProviderTiles()` for other options.
+
+```{r, eval = FALSE, purl = FALSE}
+leaflet() %>%
+ setView(lng = -63,
+         lat = 48,
+         zoom = 5) %>%
+ addProviderTiles('Esri.OceanBasemap',
+                  group = 'Ocean')
+```
+
+.font90[Full provider list [here](http://leaflet-extras.github.io/leaflet-providers/preview/index.html)]
+]
+
+.pull-right[
+```{r base_maps, fig.width = 3.5, fig.height = 4.5, echo = FALSE}
+leaflet() %>%
+      setView(lng = -63,
+              lat = 48,
+              zoom = 5) %>%
+      addProviderTiles('Esri.OceanBasemap',
+                       group = 'Ocean')
+```
+]
+
+---
+# Package [`leaflet`](https://cran.r-project.org/package=leaflet)
+
+## Multiple base maps
+
+.pull-left[
+Use [`addLayersControl()`](https://www.rdocumentation.org/packages/leaflet/versions/2.0.3/topics/addLayersControl) to toggle base map selection.
+
+.font90[
+```{r, eval = FALSE, purl = FALSE}
+lf <-
+ lf %>%
+ addProviderTiles('Esri.OceanBasemap',
+     group = 'Ocean') %>%
+ addProviderTiles("OpenTopoMap",
+     group = "Topo") %>%
+ # Add layer selection
+ addLayersControl(
+     baseGroups = c('Default','Ocean',
+                    'Topo'),
+     position = 'topleft')
+lf
+```
+
+Note that we are adding features to the preexisting `lf` object
+]
+]
+
+.pull-right[
+```{r multiple_base, fig.width = 3.5, fig.height = 4.5, echo = FALSE}
+lf <- lf %>%
+ addProviderTiles('Esri.OceanBasemap',
+     group = 'Ocean') %>%
+ addProviderTiles("OpenTopoMap",
+     group = "Topo") %>%
+ # Add layer selection
+ addLayersControl(
+     baseGroups = c('Default','Ocean','Topo'),
+     position = 'topleft')
+lf
+```
+]
+
+---
+# Package [`leaflet`](https://cran.r-project.org/package=leaflet)
+
+## Add stuff!
+
+- Popups: [`leaflet::addPopups`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/addControl)
+- Markers: [`leaflet::addMarkers`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/addControl)
+- Circles: [`leaflet::addCircles`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/addControl)
+- Rectangles: [`leaflet::addRectangles`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/addControl)
+- Legends: [`leaflet::addLegend`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/addLegend)
+- Lines: [`leaflet::addPolylines`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/addControl)
+- Polygons [`leaflet::addPolygons`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/addControl)
+- Rasters: [`leaflet::addRasterImage`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/addRasterImage), [`leafem::addStarsImage`](https://rdrr.io/github/r-spatial/leafem/man/addStarsImage.html)
+- ...
+
+.font90[`r nf()` see [leaflet documentation](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1) and [Leaflet for R](https://rstudio.github.io/leaflet/) for more]
+
+.font90[`r nf()` also see this [Cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/leaflet.pdf) for leaflet in `r rp()`]
+
+---
+# `leaflet` + `shiny`
+
+## General environment
+
+```{r, eval = FALSE}
+library(leaflet)
+```
+
+## `ui` `r ey()`
+
+```{r, eval = FALSE}
+leafletOutput(inputId = "mapId", ...)
+```
+
+## `server` `r cg()`
+
+```{r, eval = FALSE}
+output$mapId <- renderLeaflet({
+  ...
+})
+```
+
+---
+class: inverse, center, middle
+
+# `r nf()` Practice 2
+
+![:custom_hr]()
+
+---
 # Interactive spatial shiny app 
 
-After some discussion, the partner would like us to add some new spatial feature.
+***Context***
+
+> After some discussion, the partner would like us to add some new spatial feature.
 We will add a new tab with the bird density polygons and two new sliders to specify a bbox area (latitude and longitude range).
 
-.pull-left[
-***Data*** `r db()`
-- Density polygons (`AtlasGrid-GrilleAtlas.gdb`, layer: `AtlasGrid_GrilleAtlas`)
-]
+--
 
-.pull-right[
-***What to do***
+***Objective***
 
-- If not already done, download the data [`r fl()`](https://github.com/inSilecoInc/cws-shiny-template/blob/main/setup.R)
-- Import the layer `AtlasGrid_GrilleAtlas` from the `AtlasGrid-GrilleAtlas.gdb` geodatabase as a global variable
-- Load the layer as a spatial `sf` object (`sf::st_read`), transform the original projection to WGS84 standard
-]
-
-`r cdw(minutes = 10, seconds = 0, margin = "1em")`
+> Extend our application to filter and visualize a map of bird densities
 
 
 ---
-# Interactive spatial shiny app
+# Interactive spatial shiny app 
 
-.pull-left[
 ***Data*** `r db()`
-- Density polygons (`AtlasGrid-GrilleAtlas.gdb`, layer: `AtlasGrid_GrilleAtlas`)
+- atlas grid
 
-***new user inputs*** (ui) `r ey()`
-- `sliderInput`: latitude
-- `sliderInput`: longitude
+--
 
-***new server output*** `r cg()`
-- filter spatial data based on the new sliders
-- render a leaflet map: filled with the density sum (selected species)
-]
+***layout*** (ui) `r ey()`
+- tabs in main panel
 
-.pull-right[
-***What to do***
-- First, try to first make the map reactive to the latitude and longitude sliders
-- Then, set the polygons color fill based on the density sum of the selected species
-- Draw the new reactive graph for the user inputs and server outputs
-]
+--
 
-`r cdw(minutes = 30, seconds = 0, margin = "1em")`
+***user inputs*** (ui) `r ey()`
+- slider input: `longitude`
+- slider input: `latitude`
 
+--
+
+***server output*** `r cg()`
+- filter atlas with bounding box
+- join density data to atlas
+- render leaflet map with densities
 
 ---
-# Interactive spatial shiny app
+# Interactive spatial shiny app 
 
 .pull-left[
 ***Data*** `r db()`
-- Density polygons (`AtlasGrid-GrilleAtlas.gdb`, layer: `AtlasGrid_GrilleAtlas`)
-
-***new user inputs*** (ui) `r ey()`
-- `sliderInput`: latitude
-- `sliderInput`: longitude
-
-***new server output*** `r cg()`
-- filter spatial data based on the selected latitude and longitude range
-- render a leaflet map filled with the density sum of the selected species
+- atlas grid
 ]
 
 .pull-right[
 ***What to do***
-- Draw the reactive graph for the user inputs and server outputs 
-to have better overview of the new reactive elements
+
+- Import atlas grid as global variable 
+  - `dsn = "AtlasGrid-GrilleAtlas.gdb"`
+  - `layer = "AtlasGrid_GrilleAtlas"`
+- Transform projection to WGS84 standard (`epsg:4326`)
+
+
+.font80[`r nf()` see [`sf::st_read`](https://r-spatial.github.io/sf/reference/st_read.html) to learn how to import a geodatabase]
+
+.font80[`r nf()` see [`sf::st_transform`](https://r-spatial.github.io/sf/reference/st_transform.html) to learn how to transform projection of `sf` object]
 ]
 
-`r cdw(minutes = 5, seconds = 0, margin = "1em")`
+`r cdw(minutes = 10, seconds = 0, margin = "0.75em")`
+
+---
+# Interactive spatial shiny app 
+
+.pull-left[
+***Data*** `r db()` 
+- atlas grid `r ch()`
+
+***layout*** (ui) `r ey()`
+- tabs in main panel
+]
+
+.pull-right[
+***What to do***
+
+- Divide the main panel in two tabs
+
+```{r, eval = FALSE}
+?tabsetPanel
+?tabPanel
+```
+
+.font80[`r nf()` Go [here](https://shiny.rstudio.com/articles/layout-guide.html) for an example of such a layout]
+]
+
+`r cdw(minutes = 10, seconds = 0, margin = "0.75em")`
+
+---
+# Interactive spatial shiny app 
+
+.pull-left[
+***Data*** `r db()` 
+- atlas grid `r ch()`
+
+***layout*** (ui) `r ey()`
+- tabs in main panel `r ch()`
+
+***user inputs*** (ui) `r ey()`
+- slider input: `longitude`
+- slider input: `latitude`
+
+***server output*** `r cg()`
+- filter atlas with bounding box
+- join density data to atlas
+- render leaflet map with densities
+]
+
+.pull-right[
+***What to do***
+
+- Draw the reactive graph for the user inputs and server outputs
+]
+
+`r cdw(minutes = 5, seconds = 0, margin = "0.75em")`
+
+---
+# Interactive spatial shiny app 
+
+.pull-left[
+***Data*** `r db()` 
+- atlas grid `r ch()`
+
+***layout*** (ui) `r ey()`
+- tabs in main panel `r ch()`
+
+***user inputs*** (ui) `r ey()`
+- slider input: `longitude`
+- slider input: `latitude`
+
+***server output*** `r cg()`
+- filter atlas with bounding box
+- join density data to atlas
+- render leaflet map with densities
+]
+
+.pull-right[
+***What to do***
+
+- In side panel: 
+  - Add slider input for longitude
+  - Add slider input for latitude
+
+.font80[`r nf()` [here](https://shiny.rstudio.com/gallery/widget-gallery.html) for control widgets]
+]
+
+`r cdw(minutes = 10, seconds = 0, margin = "0.75em")`
+
+---
+# Interactive spatial shiny app 
+
+.pull-left[
+***Data*** `r db()` 
+- atlas grid `r ch()`
+
+***layout*** (ui) `r ey()`
+- tabs in main panel `r ch()`
+
+***user inputs*** (ui) `r ey()`
+- slider input: `longitude` `r ch()`
+- slider input: `latitude` `r ch()`
+
+***server output*** `r cg()`
+- filter atlas with bounding box
+- join density data to atlas
+- render leaflet map with densities
+]
+
+.pull-right[
+***What to do***
+
+- Create reactive expression that filters the atlas grid based on specified ranges for longitude and latitude 
+
+.font80[`r tr()` create polygon with bbox and intersect atlas]
+
+.font80[`r tr()` try filtering outside of shiny app first!]
+
+.font80[`r nf()` polygon with [`sf::st_bbox`](https://r-spatial.github.io/sf/reference/st_bbox.html) and [`sf::st_as_sfc`](https://r-spatial.github.io/sf/reference/st_as_sfc.html)]
+
+.font80[`r nf()` intersect bbox and atlas with [`sf::st_intersects`](https://r-spatial.github.io/sf/reference/st_intersects.html)]
+]
+
+`r cdw(minutes = 20, seconds = 0, margin = "0.75em")`
+
+---
+# Interactive spatial shiny app 
+
+.pull-left[
+***Data*** `r db()` 
+- atlas grid `r ch()`
+
+***layout*** (ui) `r ey()`
+- tabs in main panel `r ch()`
+
+***user inputs*** (ui) `r ey()`
+- slider input: `longitude` `r ch()`
+- slider input: `latitude` `r ch()`
+
+***server output*** `r cg()`
+- filter atlas with bounding box `r ch()`
+- join density data to atlas
+- render leaflet map with densities
+]
+
+.pull-right[
+***What to do***
+
+- Create reactive expression that:
+  - summarizes density data as the sum of selected bird densities in a grid cell
+  - joins the summary data to the filtered atlas
+
+.font80[`r nf()` [`dplyr`](https://dplyr.tidyverse.org/) is your friend! Look up [`group_by`](https://dplyr.tidyverse.org/reference/group_by.html), [`summarize`](https://dplyr.tidyverse.org/reference/summarise.html) & [`left_join`](https://dplyr.tidyverse.org/reference/mutate-joins.html)]
+]
+
+`r cdw(minutes = 10, seconds = 0, margin = "0.75em")`
+
+---
+# Interactive spatial shiny app 
+
+.pull-left[
+***Data*** `r db()` 
+- atlas grid `r ch()`
+
+***layout*** (ui) `r ey()`
+- tabs in main panel `r ch()`
+
+***user inputs*** (ui) `r ey()`
+- slider input: `longitude` `r ch()`
+- slider input: `latitude` `r ch()`
+
+***server output*** `r cg()`
+- filter atlas with bounding box `r ch()`
+- join density data to atlas `r ch()`
+- render leaflet map with densities
+]
+
+.pull-right[
+***What to do***
+
+- Add leaflet output to `ui` tab
+  - `?leafletOutput`
+- Add leaflet rendering to `server`
+  - `?renderLeaflet`
+
+.font80[`r nf()` look at [`leaflet::colorNumeric`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/colorNumeric) for colors]
+
+.font80[`r nf()` use [`leaflet::addPolygons`](https://www.rdocumentation.org/packages/leaflet/versions/2.1.1/topics/addControl) to add atlas]
+]
+
+`r cdw(minutes = 20, seconds = 0, margin = "0.75em")`
 
 ---
 # Solution 

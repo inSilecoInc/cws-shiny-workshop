@@ -319,7 +319,9 @@ class: inverse, center, middle
 - with **declarative programming**:
 > "you have 1 L of cold water, 30 mL of lemon juice and 1 tablespoon of map syrup, make me a lemonade"
 
---
+
+---
+# Reactive programming
 
 ## So
 
@@ -331,6 +333,9 @@ class: inverse, center, middle
 
 - **reactive programming** is more declarative
 
+--
+
+- **reactive programming** is not specific to Shiny (e.g. https://quarto.org/docs/computations/ojs.html)
 
 
 ---
@@ -504,7 +509,7 @@ b()
 
 ```{R reactExp4}
 a <- reactiveVal(2)
-b <- reactive({2*a()})
+b <- reactive({2 * a()})
 a2 <- reactiveVal(runif(1))
 # I avoid using `c` as name variable purposely
 d <- reactive({
@@ -567,6 +572,27 @@ a2(1)
 ???
 You won't use observe()
 to do in console
+
+
+---
+# Reactive programming .font80[&nbsp; `r ar()` building blocks]
+
+### 1. Reactive values ~ "*special variables*""
+
+--
+
+### 2. Reactive expressions ~ "*special functions*""
+
+--
+
+### 3. Observers ~ "*special what?*"
+
+???
+r <- observe(d())
+r$.label
+r$.func() 
+r$.func <- function(){d() + 1}
+
 
 
 ---
@@ -726,9 +752,43 @@ reactiveConsole(FALSE)
 
 
 ---
-# Exercise 
+# Let's practice
+
 
 ### `r lc()` Create the reactive graph of this application [Iris k-means clustering](https://shiny.rstudio.com/gallery/kmeans-example.html)
+
+<br>
+
+--
+
+### `r lc()`  What's the difference?
+
+
+.pull-left[
+```R
+a <- reactiveVal(2)
+b <- reactive({2 * a()})
+a2 <- reactiveVal(runif(1))
+d <- reactive({
+  print("executing reactive")
+  b() + a2()
+}) 
+observe(d())
+```
+]
+.pull-right[
+```R
+a <- reactiveVal(2)
+b <- reactive({2 * a()})
+d <- reactive({
+  print("executing reactive")
+  b() + runif(1)
+}) 
+observe(d())
+```
+]
+
+
 
 
 `r cdw(minutes = 15, seconds = 0, margin = "1em")`

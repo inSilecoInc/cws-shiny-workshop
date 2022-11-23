@@ -4,18 +4,18 @@
 
 ## Workshop outline
 
-* [Introduction](_01_shiny_intro.html) ~1h30min
-  * general introduction
-  * reactive programming 
-* [Minimal shiny](_02_shiny_mini.html) ~2h
-  * creating your first minimal application 
+* [General Introduction](http://www.insileco.io/cws-shiny-workshop/_01_shiny_intro.html) ~30min
+* [Reactive Programming](http://www.insileco.io/cws-shiny-workshop/_01_shiny_intro.html#33) ~1h15min
+* [Minimal shiny](http://www.insileco.io/cws-shiny-workshop/_02_shiny_mini.html) ~2h
+  * creating your first minimal application
   * practice
-* [Shiny spatial](_03_shiny_spatial.html) ~3h
+* [Shiny spatial](http://www.insileco.io/cws-shiny-workshop/_03_shiny_spatial.html) ~1h30
   * creating a more complex shiny app with spatial operations
   * more practice
-* [Shiny in production](_04_shiny_in_prod.html) ~15min
+* [Shiny in production](http://www.insileco.io/cws-shiny-workshop/_05_shiny_in_prod.html) ~15min
   * an overview of advanced topics
-
+* [Shiny spatial](http://www.insileco.io/cws-shiny-workshop/_04_shiny_synthesis.html.html) ~2h
+  * last practice
 
 ## Installation 
 

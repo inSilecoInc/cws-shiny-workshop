@@ -2,9 +2,9 @@ Package: placeholder
 Type: workshop
 Title: CWS Shiny workshop
 Version: 0.0.0.9000
-Date: 2022-20-12
+Date: 2022-22-12
 Authors@R: c(
-  person("inSileco Inc.", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com")
+  person("inSileco Inc.", role = c("aut", "cre"), email = "kevin.cazelles@insileco.io")
   )
 Description: CWS Shiny workshop
 Imports:
@@ -15,6 +15,7 @@ Imports:
   golem,
   profvis,
   reactlog,
+  rsconnect,
   shiny,
   shinyjs,
   shinytest,

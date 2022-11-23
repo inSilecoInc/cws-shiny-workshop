@@ -182,7 +182,6 @@ capture R expressions and perform some light pre-processing to make the object s
 
 ```{r eval = FALSE}
 numericInput('n', 'Number of obs', n)
-plotOutput('plot')
 ```
 
 ---
@@ -192,7 +191,6 @@ plotOutput('plot')
 
 ```{r eval = FALSE}
 numericInput(inputId = 'n', label = 'Number of obs', value = n)
-plotOutput(outputId = 'plot')
 ```
 
 --

@@ -498,8 +498,6 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
-## `r ck()` TODO - à ajuster
-
 ---
 # Minimal Shiny App: And so it begins...
 

@@ -33,6 +33,10 @@
   github: daattali/shinyjs
   description: "useful common JavaScript operations"
 
+- name: rsconnect
+  cran: true
+  github: rstudio/rsconnect
+  description: deploy applications to the ShinyApps hosted service
 
 - name: bslib
   cran: true

@@ -22,7 +22,6 @@ class: inverse, center, middle
 
 ![:custom_hr]()
 
-## `r ck()` ~20min
 
 
 

@@ -19,17 +19,23 @@ source("_setup.R")
 
 class: inverse, center, middle
 
-# `r nf()` Practice 3
+# `r nf()` Our Shiny V3
 
 ![:custom_hr]()
 
-## `r ck()` ~1h20min
+## `r ck()` ~2h
+
+
+---
+# Reactivity, escaping the graph
+
+TODO
 
 ---
 
 # Data synthesis within the shiny app
 
-The partner would liked us to add an additionnal summary with the following statistics:
+The partner would like us to add an additional summary with the following statistics:
 
 - Number of species selected
 - Number of period selected

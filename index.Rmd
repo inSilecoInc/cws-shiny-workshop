@@ -73,19 +73,24 @@ class: inverse, center, middle
 
 --
 
-### 1. What is reactive programming?
+### 1. Understand what is Shiny.
 
 --
 
-### 2. How is a Shiny app structured?
+### 2. Understand how reactive programming works in Shiny.
 
 --
 
-### 3. What are the workflows in a Shiny app?
+### 3. Learn how a Shiny app is structured.
 
 --
 
-### 4. How to debug a Shiny app?
+### 4. Learn how to develop your own basic Shiny app.
+
+--
+
+### 5. Learn how to debug a Shiny app.
+
 
 ---
 # Technical objectives
@@ -104,6 +109,8 @@ class: inverse, center, middle
 - provides a summary of the filtered data
 
 
+???
+There is much more to it but we hope we'll give you all the fundamentals
 
 ---
 class: inverse, center, middle
@@ -118,7 +125,7 @@ class: inverse, center, middle
 ---
 class: inverse, center, middle
 
-# Minimal shiny
+# Our first Shiny app
 
 ![:custom_hr]()
 
@@ -128,31 +135,30 @@ class: inverse, center, middle
 ---
 class: inverse, center, middle
 
-# Shiny spatial
+# Our shiny app V2
 
 ![:custom_hr]()
 
-[`r lk()` Shiny spatial](_03_shiny_spatial.html)
+[`r lk()` Shiny app with spatial filtering](_03_shiny_spatial.html)
 
 ---
 class: inverse, center, middle
 
-# Shiny in prod
+# Shiny in production
 
 ![:custom_hr]()
 
-`r lk()` [Shiny in prod](_04_shiny_synthesis.html)
+[`r lk()` Shiny in production](_05_shiny_in_prod.html)
+
 
 ---
 class: inverse, center, middle
 
-# Shiny in prod
+# Our shiny app V3
 
 ![:custom_hr]()
 
-`r lk()` [Shiny in production](_05_shiny_in_prod.html)
-
-
+[`r lk()` Shiny app with a synthesis tab](_04_shiny_synthesis.html)
 
 
 

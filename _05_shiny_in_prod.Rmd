@@ -36,13 +36,15 @@ class: inverse, center, middle
 * Posit (formerly RStudio) solutions:
     * `r lk()` https://posit.co/products/open-source/shinyserver/
     * `r lc()` https://www.shinyapps.io/
-
+    * `r lk()` https://docs.posit.co/shinyapps.io/index.html
 --
 
 * Self-hosting:
     - `r rfa("blog")` https://emeraldreverie.org/2019/11/17/self-hosting-shiny-notes-from-edinbr/
     - `r lk()` https://www.shinyproxy.io/#open-source
 
+???
+Account via github
 
 ---
 # Best practices

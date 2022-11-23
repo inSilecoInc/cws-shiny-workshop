@@ -84,7 +84,7 @@ b()
 
 ## ----reactExp4----------------------------------------------------------------
 a <- reactiveVal(2)
-b <- reactive({2*a()})
+b <- reactive({2 * a()})
 a2 <- reactiveVal(runif(1))
 # I avoid using `c` as name variable purposely
 d <- reactive({

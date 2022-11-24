@@ -29,7 +29,24 @@ class: inverse, center, middle
 ---
 # Reactivity, escaping the graph
 
-TODO
+### What if you need more control on the reactivity?
+
+--
+
+### What if you need your own input?
+
+--
+
+### What if you want to specify different rules of reactivity?
+
+--
+
+### You simply use the building blocks, and you escape the graph!
+
+* `observeEvent()`
+
+* `isolate()`
+
 
 ---
 

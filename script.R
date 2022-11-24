@@ -137,6 +137,11 @@ source("_setup.R")
 
 
 ## ---- eval = FALSE------------------------------------------------------------
+## # Global variables can go here
+## n <- 200
+
+
+## ---- eval = FALSE------------------------------------------------------------
 ## ui <- bootstrapPage(
 ##   numericInput('n', 'Number of obs', n),
 ##   plotOutput('plot')
@@ -149,6 +154,40 @@ source("_setup.R")
 ##     hist(runif(input$n))
 ##   })
 ## }
+
+
+## ----eval = FALSE-------------------------------------------------------------
+## numericInput('n', 'Number of obs', n)
+
+
+## ----eval = FALSE-------------------------------------------------------------
+## numericInput(inputId = 'n', label = 'Number of obs', value = n)
+
+
+## ----eval = FALSE-------------------------------------------------------------
+## whateverInput(inputId = "id", value = "val", ...)
+
+
+## ---- eval = FALSE------------------------------------------------------------
+## input <- list(id = 'val')
+## input$id
+## > "val"
+
+
+## ----eval = FALSE-------------------------------------------------------------
+## plotOutput('plot')
+
+
+## ----eval = FALSE-------------------------------------------------------------
+## plotOutput(outputId = 'plot')
+
+
+## ----eval = FALSE-------------------------------------------------------------
+## whateverOutput(inputId = "id", ...)
+
+
+## ---- eval = FALSE------------------------------------------------------------
+## output$id <- renderWhatever(...)
 
 
 ## ---- eval = FALSE------------------------------------------------------------
@@ -212,11 +251,87 @@ source("_setup.R")
 ## ?mainPanel
 
 
+## ----use_pipe, eval = FALSE---------------------------------------------------
+## # Example with pipe operator
+## dat <- dplyr::filter(
+##   densities,
+##   Group %in% input$species
+## ) |>
+## dplyr::select(Group)
+
+
+## ----nopipe, eval = FALSE-----------------------------------------------------
+## # Example without pipe operator
+## dat <- dplyr::filter(
+##   densities,
+##   Group %in% input$species
+## )
+## 
+## dat <- dplyr::select(dat, Group)
+
+
 
 ## ---- child = "_03_shiny_spatial.Rmd"-----------------------------------------
 
 ## ----include = FALSE----------------------------------------------------------
 source("_setup.R")
+
+
+
+
+## ----load_leaflet, fig.width = 3.5, fig.height = 4.5, echo = FALSE------------
+library(leaflet)
+lf <- leaflet() %>%
+ addTiles(group = 'Default') %>%
+ setView(lng = -63,
+         lat = 48,
+         zoom = 5)
+lf
+
+
+
+
+## ----base_maps, fig.width = 3.5, fig.height = 4.5, echo = FALSE---------------
+leaflet() %>%
+      setView(lng = -63,
+              lat = 48,
+              zoom = 5) %>%
+      addProviderTiles('Esri.OceanBasemap',
+                       group = 'Ocean')
+
+
+
+
+## ----multiple_base, fig.width = 3.5, fig.height = 4.5, echo = FALSE-----------
+lf <- lf %>%
+ addProviderTiles('Esri.OceanBasemap',
+     group = 'Ocean') %>%
+ addProviderTiles("OpenTopoMap",
+     group = "Topo") %>%
+ # Add layer selection
+ addLayersControl(
+     baseGroups = c('Default','Ocean','Topo'),
+     position = 'topleft')
+lf
+
+
+## ---- eval = FALSE------------------------------------------------------------
+## library(leaflet)
+
+
+## ---- eval = FALSE------------------------------------------------------------
+## leafletOutput(inputId = "mapId", ...)
+
+
+## ---- eval = FALSE------------------------------------------------------------
+## output$mapId <- renderLeaflet({
+##   ...
+## })
+
+
+## ---- eval = FALSE------------------------------------------------------------
+## ?tabsetPanel
+## ?tabPanel
 
 
 

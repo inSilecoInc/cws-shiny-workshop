@@ -706,7 +706,8 @@ head(densities)
 
 ![](img/app1.png)
 
-https://github.com/inSilecoInc/cws-shiny-apps/blob/main/practice1/app.R
+https://github.com/inSilecoInc/cws-shiny-template/blob/practice1/practice1/app.R
+
 
 ---
 

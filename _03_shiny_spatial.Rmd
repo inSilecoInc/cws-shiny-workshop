@@ -527,7 +527,7 @@ We will add a new tab with the bird density polygons and two new sliders to spec
 
 ![](img/app2.png)
 
-https://github.com/inSilecoInc/cws-shiny-apps/blob/main/practice2/app.R
+https://github.com/inSilecoInc/cws-shiny-template/blob/practice2/practice2/app.R
 
 ---
 # Examples

@@ -83,4 +83,4 @@ The partner would like us to add an additional summary with the following statis
 
 ![](img/app3.png)
 
-https://github.com/inSilecoInc/cws-shiny-apps/blob/main/practice3/app.R
+https://github.com/inSilecoInc/cws-shiny-template/blob/practice3/practice3/app.R

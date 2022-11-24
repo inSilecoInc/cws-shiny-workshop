@@ -2,7 +2,7 @@ Package: placeholder
 Type: workshop
 Title: CWS Shiny workshop
 Version: 0.0.0.9000
-Date: 2022-22-12
+Date: 2022-11-23
 Authors@R: c(
   person("inSileco Inc.", role = c("aut", "cre"), email = "kevin.cazelles@insileco.io")
   )
@@ -10,9 +10,10 @@ Description: CWS Shiny workshop
 Imports:
   bslib,
   cachem,
-  iseWorkshops,
   glue,
   golem,
+  iseWorkshops,
+  leaflet,
   profvis,
   reactlog,
   rsconnect,

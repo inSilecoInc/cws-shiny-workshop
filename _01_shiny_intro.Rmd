@@ -44,7 +44,7 @@ class: inverse, center, middle
 
 ## `r rfa("comments")` What is Shiny?
 
-## `r rfa("comments")` What do you what to use it for?
+## `r rfa("comments")` What do you want to use it for?
 
 ## `r rfa("comments")` Have you already built a Shiny App?
 
@@ -210,7 +210,7 @@ we wont go over details of new feature but important to have latest (minor) vers
 
 --
 
-- Extensive documentation and material is available for shiny applications.
+- Extensive documentation and material available for shiny applications.
 
 --
 

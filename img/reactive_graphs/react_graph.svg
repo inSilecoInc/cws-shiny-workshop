@@ -22,14 +22,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
-     showgrid="true"
-     inkscape:zoom="0.40686868"
-     inkscape:cx="446.08988"
-     inkscape:cy="1274.367"
-     inkscape:window-width="3018"
-     inkscape:window-height="1664"
-     inkscape:window-x="54"
-     inkscape:window-y="27"
+     showgrid="false"
+     inkscape:zoom="0.88893685"
+     inkscape:cx="422.97718"
+     inkscape:cy="239.61207"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="479"
+     inkscape:window-y="1728"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showguides="true"
@@ -48,6 +48,12 @@
   </sodipodi:namedview>
   <defs
      id="defs2">
+    <rect
+       x="65.472629"
+       y="163.87832"
+       width="90.869654"
+       height="55.349921"
+       id="rect1887" />
     <marker
        style="overflow:visible"
        id="TriangleOutS"
@@ -250,138 +256,64 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 27.251986,10.703596 h 5.291667 l 2.645833,2.645833 -2.645833,2.645833 h -5.291667 z"
-       id="path2251" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 37.835319,4.0890133 2.645833,2.645833 -2.645833,2.645833 h 5.291666 l 2.645833,-2.645833 -2.645833,-2.645833 z"
-       id="path2824" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 48.418653,10.703596 2.645833,2.645833 -2.645833,2.645833 h 7.9375 v -5.291666 z"
-       id="path2826" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 36.512402,10.703596 2.645833,2.645833 -2.645833,2.645834 h 7.9375 l 2.645833,-2.645834 -2.645833,-2.645833 z"
-       id="path2836" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.01515;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 16.668653,39.567234 h 16.115532 l 8.057764,8.057764 -8.057764,8.057765 H 16.668653 Z"
-       id="path2251-5" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.01515;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 81.130777,39.567234 8.057765,8.057764 -8.057765,8.057765 H 105.30407 V 39.567234 Z"
-       id="path2826-3" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:1.01515;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 44.87083,39.567234 8.057764,8.057764 -8.057764,8.057768 h 24.173296 l 8.057764,-8.057768 -8.057764,-8.057764 z"
-       id="path2836-9" />
-    <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 20.096212,96.572913 h 17.224849 l 8.612422,8.612427 -8.612422,8.61242 H 20.096212 Z"
-       id="path2251-5-5"
-       inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/reactVal.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 128.67926,96.572913 8.61247,8.612427 -8.61247,8.61242 h 25.83735 V 96.572913 Z"
-       id="path2826-3-8"
-       inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/reactObspng.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 50.239693,96.572913 8.612422,8.612427 -8.612422,8.61242 h 25.837271 l 8.612422,-8.61242 -8.612422,-8.612427 z"
-       id="path2836-9-2"
-       inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/reactExp.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 89.046994,96.572913 8.612422,8.612427 -8.612422,8.61242 h 25.837316 l 8.61241,-8.61242 -8.61241,-8.612427 z"
-       id="path2836-9-2-3" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 18.660592,121.0334 h 17.224849 l 8.612422,8.61243 -8.612422,8.61242 H 18.660592 Z"
+       d="m 19.816827,19.816817 h 17.22484 l 8.61243,8.61243 -8.61243,8.61242 h -17.22484 z"
        id="path2251-5-5-7"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/simpleGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 136.7687,121.0334 8.61247,8.61243 -8.61247,8.61242 h 25.83735 V 121.0334 Z"
+       d="m 137.92492,19.816817 8.61247,8.61243 -8.61247,8.61242 h 25.83735 v -17.22485 z"
        id="path2826-3-8-0"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/simpleGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 73.408411,121.0334 8.612422,8.61243 -8.612422,8.61242 h 25.837271 l 8.612418,-8.61242 -8.612418,-8.61243 z"
+       d="m 74.564637,19.816817 8.61243,8.61243 -8.61243,8.61242 h 25.837273 l 8.61241,-8.61242 -8.61241,-8.61243 z"
        id="path2836-9-2-1"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/simpleGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS)"
-       d="M 46.449374,129.35574 H 67.61604 v 0"
+       d="m 47.605607,28.139157 h 21.16666 v 0"
        id="path3409"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/simpleGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-7)"
-       d="m 109.80962,129.35574 h 21.1667 v 0"
+       d="m 110.96584,28.139157 h 21.1667 v 0"
        id="path3409-6"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/simpleGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 123.79799,64.94318 h 17.22483 l 8.61241,8.612433 -8.61241,8.61242 h -17.22483 z"
-       id="path2251-5-5-7-3"
-       inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/simpleGraph0.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 178.54567,64.94318 8.61246,8.612433 -8.61246,8.61242 h 25.83732 V 64.94318 Z"
-       id="path2826-3-8-0-3"
-       inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/simpleGraph0.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-2)"
-       d="m 151.58674,73.555613 h 21.16664 v 0"
-       id="path3409-1"
-       inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/simpleGraph0.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 2.7377291,205.55428 H 19.962579 l 8.612422,8.61243 -8.612422,8.61242 H 2.7377291 Z"
+       d="m -225.06853,37.51693 h 17.22485 l 8.61242,8.61243 -8.61242,8.61242 h -17.22485 z"
        id="path2251-5-5-7-9"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 182.68129,192.4709 8.61247,8.61243 -8.61247,8.61242 h 25.83735 V 192.4709 Z"
+       d="m -45.12497,24.43355 8.61247,8.61243 -8.61247,8.61242 h 25.83735 V 24.43355 Z"
        id="path2826-3-8-0-7"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 56.043803,215.07933 8.612422,8.61243 -8.612422,8.61242 h 25.837268 l 8.61243,-8.61242 -8.61243,-8.61243 z"
+       d="m -171.76246,47.04198 8.61243,8.61243 -8.61243,8.61242 h 25.83727 l 8.61243,-8.61242 -8.61243,-8.61243 z"
        id="path2836-9-2-1-4"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-7-4)"
-       d="m 93.927083,223.57292 h 19.843747 3.96875"
+       d="m -133.87918,55.53557 h 19.84375 3.96875"
        id="path3409-6-9"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
@@ -389,7 +321,7 @@
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-7-4-4)"
-       d="m 158.75,226.21875 11.1125,0.79375 10.05417,0.52917"
+       d="m -69.05626,58.1814 11.1125,0.79375 10.05417,0.52917"
        id="path3409-6-9-8"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
@@ -397,28 +329,28 @@
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 2.7377291,233.40842 H 19.962579 l 8.612422,8.61243 -8.612422,8.61242 H 2.7377291 Z"
+       d="m -225.06853,65.37107 h 17.22485 l 8.61242,8.61243 -8.61242,8.61242 h -17.22485 z"
        id="path4227"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 182.68129,219.81118 8.61247,8.61243 -8.61247,8.61242 h 25.83735 v -17.22485 z"
+       d="m -45.12497,51.77383 8.61247,8.61243 -8.61247,8.61242 h 25.83735 V 51.77383 Z"
        id="path4229"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 122.59399,214.3125 8.61242,8.61243 -8.61242,8.61242 h 25.83727 l 8.61243,-8.61242 -8.61243,-8.61243 z"
+       d="m -105.21227,46.27515 8.61242,8.61243 -8.61242,8.61242 H -79.375 l 8.61243,-8.61242 -8.61243,-8.61243 z"
        id="path4231"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-1)"
-       d="M 31.75,242.09375 44.979167,248.70833 55.5625,254"
+       d="m -196.05626,74.0564 13.22917,6.61458 10.58333,5.29167"
        id="path4233"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
@@ -426,28 +358,28 @@
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 2.7377291,261.26259 H 19.962579 l 8.612422,8.61243 -8.612422,8.61242 H 2.7377291 Z"
+       d="m -225.06853,93.22524 h 17.22485 l 8.61242,8.61243 -8.61242,8.61242 h -17.22485 z"
        id="path4227-5"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 182.68129,247.15146 8.61247,8.61243 -8.61247,8.61242 h 25.83735 v -17.22485 z"
+       d="m -45.12497,79.11411 8.61247,8.61243 -8.61247,8.61242 h 25.83735 V 79.11411 Z"
        id="path4229-0"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 58.829399,246.0625 8.612422,8.61243 -8.612422,8.61242 h 25.837268 l 8.61243,-8.61242 -8.61243,-8.61243 z"
+       d="m -168.97686,78.02515 8.61242,8.61243 -8.61242,8.61242 h 25.83727 l 8.61243,-8.61242 -8.61243,-8.61243 z"
        id="path4231-2"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-1-0)"
-       d="M 31.75,269.875 44.979167,263.26042 55.5625,257.96875"
+       d="m -196.05626,101.83765 13.22917,-6.61458 10.58333,-5.29167"
        id="path4233-8"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
@@ -455,7 +387,7 @@
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-7-4-7)"
-       d="M 96.572917,254 108.47917,240.77083 119.0625,228.86458"
+       d="m -131.23334,85.96265 11.90625,-13.22917 10.58333,-11.90625"
        id="path4235-7"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
@@ -463,7 +395,7 @@
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-7-4-7-9)"
-       d="m 95.25,256.64583 13.22917,13.22917 10.58333,10.58333"
+       d="m -132.55626,88.60848 13.22917,13.22917 10.58333,10.58333"
        id="path4235-7-9"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
@@ -471,28 +403,28 @@
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 182.68129,274.49174 8.61247,8.61243 -8.61247,8.61242 h 25.83735 v -17.22485 z"
+       d="m -45.12497,106.45439 8.61247,8.61243 -8.61247,8.61242 h 25.83735 v -17.22485 z"
        id="path4229-0-4"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 122.59399,274.49174 8.61242,8.61243 -8.61242,8.61242 h 25.83727 l 8.61243,-8.61242 -8.61243,-8.61243 z"
+       d="m -105.21227,106.45439 8.61242,8.61243 -8.61242,8.61242 H -79.375 l 8.61243,-8.61242 -8.61243,-8.61243 z"
        id="path4231-2-3"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-7-4-7-0)"
-       d="m 158.63282,282.81404 h 21.16673 v 0"
+       d="m -69.17344,114.77669 h 21.16673 v 0"
        id="path4235-7-2"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS)"
-       d="m 158.75,219.60417 18.52083,-17.19792"
+       d="M -69.05626,51.56682 -50.53543,34.3689"
        id="path4947"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
@@ -500,7 +432,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-3)"
-       d="m 31.74999,214.3125 21.166677,10.58333"
+       d="m -196.05627,46.27515 21.16668,10.58333"
        id="path4947-7"
        sodipodi:nodetypes="cc"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
@@ -508,7 +440,7 @@
        inkscape:export-ydpi="300" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-7-4-7)"
-       d="M 96.572917,254 108.47917,240.77083 119.0625,228.86458"
+       d="m -131.23334,85.96265 11.90625,-13.22917 10.58333,-11.90625"
        id="path8333"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
@@ -516,11 +448,49 @@
        sodipodi:nodetypes="ccc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS-7-4-7)"
-       d="M 97.895833,255.32292 H 127 177.27083"
+       d="m -129.91043,87.28557 h 29.10417 50.27083"
        id="path8528"
        inkscape:export-filename="/home/kc/git/inSileco/cws-shiny-workshop/img/reactive_graphs/complexGraph.png"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"
        sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text1885"
+       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;white-space:pre;shape-inside:url(#rect1887)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="14.131717"
+       y="51.307751"
+       id="text2333"><tspan
+         sodipodi:role="line"
+         id="tspan2331"
+         style="stroke-width:0.264583"
+         x="14.131717"
+         y="51.307751">input</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="70.975128"
+       y="52.333523"
+       id="text2333-7"><tspan
+         sodipodi:role="line"
+         id="tspan2331-5"
+         style="stroke-width:0.264583"
+         x="70.975128"
+         y="52.333523">reactive</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="139.59874"
+       y="51.002857"
+       id="text2333-3"><tspan
+         sodipodi:role="line"
+         id="tspan2331-56"
+         style="stroke-width:0.264583"
+         x="139.59874"
+         y="51.002857">output</tspan></text>
   </g>
 </svg>
